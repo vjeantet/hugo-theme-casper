@@ -5,25 +5,23 @@ Casper is a single-column theme for [Hugo](http://gohugo.io/).
 
 ## Features
 
-* Google Analytics
-* Disqus
+* Google Analytics (optional)
+* Disqus ( can disable comments by post)
 * Share buttons (Facebook, Twitter, Google)
-* Big cover image
-* Custom cover by post
+* Big cover image (optional)
+* Custom cover by post (optional)
 * Tagging
-
+* Pagination
 
 # Installation
 
-Referred from [hugoThemes#Installing Themes](https://github.com/spf13/hugoThemes#installing-themes).
+## Installing this theme
 
-## Installing a this theme
-
-    mkdir themes (if it does not exists)
+    mkdir themes
     cd themes
     git clone https://github.com/vjeantet/hugo-theme-casper casper
-    
-## Build your site with this theme
+
+## Build your website with this theme
 
     hugo server -t casper
 
@@ -31,23 +29,24 @@ Referred from [hugoThemes#Installing Themes](https://github.com/spf13/hugoThemes
 
 **config.toml**
 
-``` yaml
+``` toml
 BaseUrl: "http://example.com"
 LanguageCode: "fr-FR"
 Title: "My blog is awesome"
+paginate = 5
+DisqusShortname = "YOUR_SHORT_NAME_HERE"
+Copyright = "All rights reserved - 2015"
 
-Params:
-  Author: "My Name"
-  DateForm: "Mon, Jan 2, 2006"
-  GoogleAnalyticsUserID: "Your ID."
-  Disqus: "Your Disqus."
-  Cover
-  logo
-  bio
-  authorimage
+[params]
+  description = "this is my description"
+  cover = "images/cover.jpg"
+  author = "Valère JEANTET"
+  logo = "images/logo.png"
+  bio= "my bio"
+  googleAnalyticsUserID = "UA-79101-12"
 
-permalinks:
-  post: /blog/:year/:month/:day/:title/
+[permalinks]
+  post = "/:slug/"
 
 ```
 
@@ -56,13 +55,15 @@ Example : [config.toml](https://github.com/vjeantet/vjeantet.fr/blob/master/conf
 **example post**
 
 ``` markdown
----
-title: "Post title here"
-date: 2015-05-11
-comments: true
-tags: ["docker", "golang", "web"]
-image: "/images/hugo.png" # cover image for this post, (optional)
----
++++
+date = "2014-07-11T10:54:24+02:00"
+draft = false
+title = "dotScale 2014 as a sketch"
+slug = "dotscale-2014-as-a-sketch"
+tags = ["event","dotScale","sketchnote"]
+image = "images/2014/Jul/titledotscale.png"
+comments = true
++++
 
 Contents here
 ```

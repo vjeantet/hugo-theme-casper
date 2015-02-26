@@ -2,7 +2,7 @@
 {{ $baseurl := .Site.BaseUrl }}
 
 {{if .Params.image}}
-<header class="main-header post-head" style="background-image: url({{.Params.image}})">
+<header class="main-header post-head" style="background-image: url({{ $baseurl }}{{.Params.image}})">
   <nav class="main-nav overlay clearfix">
 {{else}}
 <header class="main-header post-head no-cover">
@@ -30,7 +30,7 @@
           </time>
 
          {{ range .Params.tags }}
-          <span class="post-tag small"><a href="{{ $baseurl }}/tags/{{ . | urlize }}">#{{ . }}</a></span>
+          <span class="post-tag small"><a href="{{ $baseurl }}tags/{{ . | urlize }}">#{{ . }}</a></span>
          {{ end }}
         </section>
     </header>
@@ -43,9 +43,9 @@
   <footer class="post-footer">
 
 
-    {{if .Site.Params.authorimage}}
+    {{if .Site.Params.logo}}
     <figure class="author-image">
-        <a class="img" href="{{.Site.BaseUrl}}" style="background-image: url(/{{.Site.Params.authorimage}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
+        <a class="img" href="{{.Site.BaseUrl}}" style="background-image: url({{ $baseurl }}{{.Site.Params.logo}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
     </figure>
     {{end}}
 
@@ -81,6 +81,7 @@
       </a>
     </section>
 
+    {{ if ne .Params.comments false}}
     {{ with .Site.DisqusShortname }}
     <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -92,6 +93,7 @@
       })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    {{ end }}
     {{ end }}
 
   </footer>

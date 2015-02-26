@@ -1,14 +1,14 @@
 {{ partial "header.html" . }}
 
 {{if .Site.Params.cover}}
-<header class="main-header " style="background-image: url(/{{.Site.Params.cover}})">
+<header class="main-header " style="background-image: url({{.Site.BaseUrl}}{{.Site.Params.cover}})">
 {{else}}
 <header class="main-header no-cover">
 {{end}}
     
     <nav class="main-nav overlay clearfix">
         {{ if .Site.Params.logo }}
-            <a class="blog-logo" href="{{ .Permalink }}"><img src="/{{ .Site.Params.logo }}" alt="Blog Logo" /></a>
+            <a class="blog-logo" href="{{ .Permalink }}"><img src="{{.Site.BaseUrl}}{{ .Site.Params.logo }}" alt="Blog Logo" /></a>
         {{end}}
         <a class="subscribe-button icon-feed" href="{{ .RSSLink }}">Subscribe</a>
     </nav>
@@ -24,32 +24,17 @@
 
 <main id="content" class="content" role="main">
 
+    {{ $paginator := .Paginator }}
 
-<div class="extra-pagination inner">
-    <nav class="pagination" role="navigation">
-    {{if .Paginator.HasPrev}}
-        <a class="newer-posts" href="{{ .Paginator.Prev.Url }}">&larr; Newer Posts</a>
-    {{end}}
-    <span class="page-number">Page {{ .Paginator.PageNumber }} of {{.Paginator.TotalPages}}</span>
-    {{if .Paginator.HasNext}}
-        <a class="older-posts" href="{{ .Paginator.Next.Url }}">Older Posts &rarr;</a>
-    {{end}}
-    </nav>
-</div>
+    <div class="extra-pagination inner">
+        {{ partial "pagination.html" $paginator }}
+    </div>
 
-{{ range $index, $page := .Paginator.Pages }}
-{{ .Render "li" }}
-{{ end }}
+    {{ range $index, $page := .Paginator.Pages }}
+        {{ .Render "li" }}
+    {{ end }}
 
-<nav class="pagination" role="navigation">
-    {{if .Paginator.HasPrev}}
-        <a class="newer-posts" href="{{ .Paginator.Prev.Url }}">&larr; Newer Posts</a>
-    {{end}}
-    <span class="page-number">Page {{ .Paginator.PageNumber }} of {{.Paginator.TotalPages}}</span>
-    {{if .Paginator.HasNext}}
-        <a class="older-posts" href="{{ .Paginator.Next.Url }}">Older Posts &rarr;</a>
-    {{end}}
-    </nav>
+    {{ partial "pagination.html" $paginator }}
 
 </main>
 

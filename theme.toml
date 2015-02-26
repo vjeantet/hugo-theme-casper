@@ -4,7 +4,7 @@ licenselink = "https://github.com/vjeantet/hugo-theme-casper/blob/master/LICENSE
 description = "Casper theme from Ghost Foundation"
 homepage = "http://vjeantet.fr/"
 tags = ["blog"]
-features = ["disqus", "google analytics"]
+features = ["disqus", "google analytics","share"]
 
 [author]
   name = "Valere JEANTET"

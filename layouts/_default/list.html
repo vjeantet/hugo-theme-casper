@@ -2,9 +2,9 @@
 {{ $baseurl := .Site.BaseUrl }}
 
 {{if .Params.cover}}
-	<header class="main-header tag-head" style="background-image: url({{.Params.cover}})">
+	<header class="main-header tag-head" style="background-image: url({{ $baseurl }}{{.Params.cover}})">
 {{else if .Site.Params.cover}}
-	<header class="main-header tag-head" style="background-image: url(/{{.Site.Params.cover}})">
+	<header class="main-header tag-head" style="background-image: url({{ $baseurl }}{{.Site.Params.cover}})">
 {{else}}
 	<header class="main-header tag-head no-cover">
 {{end}}
@@ -25,34 +25,17 @@
 </header>
 
 <main class="content" role="main">
+    {{ $paginator := .Paginate (where .Data.Pages "Section" "post") }}
 
 	<div class="extra-pagination inner">
-    <nav class="pagination" role="navigation">
-    {{if .Paginator.HasPrev}}
-        <a class="newer-posts" href="{{ .Paginator.Prev.Url }}">&larr; Newer Posts</a>
-    {{end}}
-    <span class="page-number">Page {{ .Paginator.PageNumber }} of {{.Paginator.TotalPages}}</span>
-    {{if .Paginator.HasNext}}
-        <a class="older-posts" href="{{ .Paginator.Next.Url }}">Older Posts &rarr;</a>
-    {{end}}
-    </nav>
+    {{ partial "pagination.html" $paginator }}
 	</div>
 
-
-	{{ $paginator := .Paginate (where .Data.Pages "Section" "post") }}
 	{{ range $index, $page := .Paginator.Pages }}
-	{{ .Render "li" }}
+	   {{ .Render "li" }}
 	{{ end }}
 
-	<nav class="pagination" role="navigation">
-    {{if .Paginator.HasPrev}}
-        <a class="newer-posts" href="{{ .Paginator.Prev.Url }}">&larr; Newer Posts</a>
-    {{end}}
-    <span class="page-number">Page {{ .Paginator.PageNumber }} of {{.Paginator.TotalPages}}</span>
-    {{if .Paginator.HasNext}}
-        <a class="older-posts" href="{{ .Paginator.Next.Url }}">Older Posts &rarr;</a>
-    {{end}}
-    </nav>
+	{{ partial "pagination.html" $paginator }}
 </main>
 
 

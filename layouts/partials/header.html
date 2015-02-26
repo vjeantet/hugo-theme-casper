@@ -11,9 +11,6 @@
     
     {{ if .IsPage }}
   	<meta property="og:type" content="article" />
-  	{{ with .Site.Params.facebook }}
-	  <meta property="og:article:author" content="https://facebook.com/{{ . }}" />
-  	{{ end }}
 
     <meta property="og:article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHtml }}" />
 
@@ -33,27 +30,29 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="shortcut icon" href="/images/favicon.ico">
-	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="{{.Site.BaseUrl}}images/favicon.ico">
+	  <link rel="apple-touch-icon" href="{{.Site.BaseUrl}}images/apple-touch-icon.png" />
     
-    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="{{.Site.BaseUrl}}css/screen.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
 
     <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
     
     {{.Hugo.Generator}}
 
-    <link rel="canonical" href="http://vjeantet.fr/" />
+    <link rel="canonical" href="{{.Site.BaseUrl}}" />
+
+    {{with  .Site.Params.googleAnalyticsUserID }}
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-79101-12', 'vjeantet.fr');
+      ga('create', '{{.}}', 'auto');
       ga('send', 'pageview');
 
     </script>
-    
+    {{end}}
 </head>
 <body class="">
