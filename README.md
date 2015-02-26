@@ -30,9 +30,9 @@ Casper is a single-column theme for [Hugo](http://gohugo.io/).
 **config.toml**
 
 ``` toml
-BaseUrl: "http://example.com"
-LanguageCode: "fr-FR"
-Title: "My blog is awesome"
+BaseUrl= "http://example.com"
+LanguageCode= "fr-FR"
+Title= "My blog is awesome"
 paginate = 5
 DisqusShortname = "YOUR_SHORT_NAME_HERE"
 Copyright = "All rights reserved - 2015"
