@@ -1,6 +1,6 @@
 name = "Casper"
 license = "MIT"
-licenselink = "https://github.com/vjeantet/hugo-theme-casper/LICENSE.md"
+licenselink = "https://github.com/vjeantet/hugo-theme-casper/blob/master/LICENSE.md"
 description = "Casper theme from Ghost Foundation"
 homepage = "http://vjeantet.fr/"
 tags = ["blog"]
