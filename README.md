@@ -3,6 +3,8 @@
 
 Casper is a single-column theme for [Hugo](http://gohugo.io/).
 
+blog demo : (http://vjeantet.fr)
+
 ## Features
 
 * Google Analytics (optional)
