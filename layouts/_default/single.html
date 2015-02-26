@@ -1,0 +1,101 @@
+{{ partial "header.html" . }}
+{{ $baseurl := .Site.BaseUrl }}
+
+{{if .Params.image}}
+<header class="main-header post-head" style="background-image: url({{.Params.image}})">
+  <nav class="main-nav overlay clearfix">
+{{else}}
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+{{end}}
+    <a class="back-button icon-arrow-left" href="{{ .Site.BaseUrl }}">Home</a>
+    <a class="subscribe-button icon-feed" href="{{ .RSSLink }}">Subscribe</a>
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="{{.Type}}">
+
+    <header class="post-header">
+        <h1 class="post-title">{{.Title}}</h1>
+        <section class="post-meta">
+          <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHtml }}">
+            {{ .Date.Format "Jan 2, 2006" }}
+          </time>
+
+         {{ range .Params.tags }}
+          <span class="post-tag small"><a href="{{ $baseurl }}/tags/{{ . | urlize }}">#{{ . }}</a></span>
+         {{ end }}
+        </section>
+    </header>
+  
+    <section class="post-content">
+      {{ .Content }}
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    {{if .Site.Params.authorimage}}
+    <figure class="author-image">
+        <a class="img" href="{{.Site.BaseUrl}}" style="background-image: url(/{{.Site.Params.authorimage}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
+    </figure>
+    {{end}}
+
+
+    <section class="author">
+        <h4><a href="{{.Site.BaseUrl}}">{{.Site.Params.author}}</a></h4>
+        {{if .Site.Params.bio}}
+            <p>{{.Site.Params.bio}}</p>
+        {{else}}
+            <p>Read <a href="{{.Site.BaseUrl}}">more posts</a> by this author.</p>
+        {{end}}
+        <div class="author-meta">
+            {{if .Site.Params.authorlocation}}<span class="author-location icon-location">{{.Site.Params.authorlocation}}</span>{{end}}
+            {{if .Site.Params.authorwebsite}}<span class="author-link icon-link"><a href="{{.Site.Params.authorwebsite}}">{{.Site.Params.authorwebsite}}</a></span>{{end}}
+        </div>
+    </section>
+
+
+    
+    <section class="share">
+      <h4>Share this post</h4>
+      <a class="icon-twitter" href="https://twitter.com/share?text={{ .Title | safeHtml}}&amp;url={{ .Permalink }}"
+          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <span class="hidden">Twitter</span>
+      </a>
+      <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}"
+          onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <span class="hidden">Facebook</span>
+      </a>
+      <a class="icon-google-plus" href="https://plus.google.com/share?url={{ .Permalink }}"
+         onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <span class="hidden">Google+</span>
+      </a>
+    </section>
+
+    {{ with .Site.DisqusShortname }}
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = '{{ . }}';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    {{ end }}
+
+  </footer>
+</article>
+
+</main>
+{{ partial "footer.html" . }}

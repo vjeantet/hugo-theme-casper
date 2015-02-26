@@ -1,0 +1,56 @@
+{{ partial "header.html" . }}
+
+{{if .Site.Params.cover}}
+<header class="main-header " style="background-image: url(/{{.Site.Params.cover}})">
+{{else}}
+<header class="main-header no-cover">
+{{end}}
+    
+    <nav class="main-nav overlay clearfix">
+        {{ if .Site.Params.logo }}
+            <a class="blog-logo" href="{{ .Permalink }}"><img src="/{{ .Site.Params.logo }}" alt="Blog Logo" /></a>
+        {{end}}
+        <a class="subscribe-button icon-feed" href="{{ .RSSLink }}">Subscribe</a>
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">{{ .Site.Title }}</h1>
+            <h2 class="page-description">{{ .Site.Params.description }}</h2>
+        </div>
+    </div>
+    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+</header>
+
+
+<main id="content" class="content" role="main">
+
+
+<div class="extra-pagination inner">
+    <nav class="pagination" role="navigation">
+    {{if .Paginator.HasPrev}}
+        <a class="newer-posts" href="{{ .Paginator.Prev.Url }}">&larr; Newer Posts</a>
+    {{end}}
+    <span class="page-number">Page {{ .Paginator.PageNumber }} of {{.Paginator.TotalPages}}</span>
+    {{if .Paginator.HasNext}}
+        <a class="older-posts" href="{{ .Paginator.Next.Url }}">Older Posts &rarr;</a>
+    {{end}}
+    </nav>
+</div>
+
+{{ range $index, $page := .Paginator.Pages }}
+{{ .Render "li" }}
+{{ end }}
+
+<nav class="pagination" role="navigation">
+    {{if .Paginator.HasPrev}}
+        <a class="newer-posts" href="{{ .Paginator.Prev.Url }}">&larr; Newer Posts</a>
+    {{end}}
+    <span class="page-number">Page {{ .Paginator.PageNumber }} of {{.Paginator.TotalPages}}</span>
+    {{if .Paginator.HasNext}}
+        <a class="older-posts" href="{{ .Paginator.Next.Url }}">Older Posts &rarr;</a>
+    {{end}}
+    </nav>
+
+</main>
+
+{{ partial "footer.html" . }}

@@ -1,0 +1,60 @@
+{{ partial "header.html" . }}
+{{ $baseurl := .Site.BaseUrl }}
+
+{{if .Params.cover}}
+	<header class="main-header tag-head" style="background-image: url({{.Params.cover}})">
+{{else if .Site.Params.cover}}
+	<header class="main-header tag-head" style="background-image: url(/{{.Site.Params.cover}})">
+{{else}}
+	<header class="main-header tag-head no-cover">
+{{end}}
+    <nav class="main-nav overlay clearfix">
+        <a class="back-button icon-arrow-left" href="{{ .Site.BaseUrl }}">Home</a>
+    	<a class="subscribe-button icon-feed" href="{{ .RSSLink }}">Subscribe</a>
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">{{.Title}}</h1>
+            <h2 class="page-description">
+                {{if .Params.description}}
+                    {{.Params.description}}
+                {{end}}
+            </h2>
+        </div>
+    </div>
+</header>
+
+<main class="content" role="main">
+
+	<div class="extra-pagination inner">
+    <nav class="pagination" role="navigation">
+    {{if .Paginator.HasPrev}}
+        <a class="newer-posts" href="{{ .Paginator.Prev.Url }}">&larr; Newer Posts</a>
+    {{end}}
+    <span class="page-number">Page {{ .Paginator.PageNumber }} of {{.Paginator.TotalPages}}</span>
+    {{if .Paginator.HasNext}}
+        <a class="older-posts" href="{{ .Paginator.Next.Url }}">Older Posts &rarr;</a>
+    {{end}}
+    </nav>
+	</div>
+
+
+	{{ $paginator := .Paginate (where .Data.Pages "Section" "post") }}
+	{{ range $index, $page := .Paginator.Pages }}
+	{{ .Render "li" }}
+	{{ end }}
+
+	<nav class="pagination" role="navigation">
+    {{if .Paginator.HasPrev}}
+        <a class="newer-posts" href="{{ .Paginator.Prev.Url }}">&larr; Newer Posts</a>
+    {{end}}
+    <span class="page-number">Page {{ .Paginator.PageNumber }} of {{.Paginator.TotalPages}}</span>
+    {{if .Paginator.HasNext}}
+        <a class="older-posts" href="{{ .Paginator.Next.Url }}">Older Posts &rarr;</a>
+    {{end}}
+    </nav>
+</main>
+
+
+
+{{ partial "footer.html" . }}

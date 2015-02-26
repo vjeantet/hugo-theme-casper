@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{.Site.LanguageCode}}">
+<head>
+    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content="{{ if ne .Url "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}" />
+  	<meta property="og:site_name" content="{{ .Site.Title }}" />
+  	<meta property="og:url" content="{{ .Permalink }}" />
+    
+    {{ if .IsPage }}
+  	<meta property="og:type" content="article" />
+  	{{ with .Site.Params.facebook }}
+	  <meta property="og:article:author" content="https://facebook.com/{{ . }}" />
+  	{{ end }}
+
+    <meta property="og:article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHtml }}" />
+
+    {{ range .Params.tags }}
+    <meta property="og:article:tag" content="{{ . }}" />
+    {{ end }}
+    {{ else }}
+    <meta property="og:type" content="website" />
+    {{ end }}
+
+  <title>
+    {{ if ne .Url "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}
+  </title>
+
+    <meta name="description" content="{{ .Site.Params.description }}" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+    
+    {{.Hugo.Generator}}
+
+    <link rel="canonical" href="http://vjeantet.fr/" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79101-12', 'vjeantet.fr');
+      ga('send', 'pageview');
+
+    </script>
+    
+</head>
+<body class="">
