@@ -25,7 +25,7 @@
 </header>
 
 <main class="content" role="main">
-    {{ $paginator := .Paginate (where .Data.Pages "Section" "post") }}
+    {{ $paginator := .Paginator }}
 
 	<div class="extra-pagination inner">
     {{ partial "pagination.html" $paginator }}
