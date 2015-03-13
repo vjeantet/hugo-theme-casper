@@ -46,6 +46,8 @@ Copyright = "All rights reserved - 2015"
   logo = "images/logo.png"
   bio= "my bio"
   googleAnalyticsUserID = "UA-79101-12"
+  githubName = "vjeantet"
+  twitterName = "vjeantet"
 
 [permalinks]
   post = "/:slug/"

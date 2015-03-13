@@ -8,6 +8,12 @@
 <header class="main-header post-head no-cover">
   <nav class="main-nav clearfix">
 {{end}}
+   {{ if .Site.Params.githubName }}
+        <a href="https://github.com/{{ .Site.Params.githubName }}"><img src="{{.Site.BaseUrl}}images/logos/github.png" alt="{{.Site.Params.author}}'s github" /></a>
+    {{end}}
+    {{ if .Site.Params.twitterName }}
+        <a href="https://twitter.com/{{ .Site.Params.twitterName }}"><img src="{{.Site.BaseUrl}}images/logos/twitter.png" alt="{{.Site.Params.author}}'s twitter" /></a>
+    {{end}}
     <a class="back-button icon-arrow-left" href="{{ .Site.BaseUrl }}">Home</a>
     <a class="subscribe-button icon-feed" href="{{ .RSSLink }}">Subscribe</a>
   </nav>
