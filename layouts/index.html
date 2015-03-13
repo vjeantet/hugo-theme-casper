@@ -15,10 +15,15 @@
     <div class="vertical">
         <div class="main-header-content inner">
             {{ if .Site.Params.githubName }}
-                <a class="bloglogo" href="https://github.com/{{ .Site.Params.githubName }}"><img src="{{.Site.BaseUrl}}images/logos/github.png" alt="{{.Site.Params.author}}'s github" /></a>
+                <a  href="https://github.com/{{ .Site.Params.githubName }}">
+                <span class="icon-github" style="color:white;font-size:2em"></span>
+                </a>
             {{end}}
+            &nbsp;
             {{ if .Site.Params.twitterName }}
-                <a class="bloglogo" href="https://twitter.com/{{ .Site.Params.twitterName }}"><img src="{{.Site.BaseUrl}}images/logos/twitter.png" alt="{{.Site.Params.author}}'s twitter" /></a>
+                <a class="bloglogo" href="https://twitter.com/{{ .Site.Params.twitterName }}">
+                    <span class="icon-twitter" style="color:white;font-size:2em"></span>
+                </a>
             {{end}}
             <h1 class="page-title">{{ .Site.Title }}</h1>
             <h2 class="page-description">{{ .Site.Params.description }}</h2>
