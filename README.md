@@ -14,6 +14,7 @@ blog demo : http://vjeantet.fr
 * Custom cover by post (optional)
 * Tagging
 * Pagination
+* Menu
 
 # Installation
 
@@ -49,10 +50,17 @@ Copyright = "All rights reserved - 2015"
   githubName = "vjeantet"
   twitterName = "vjeantet"
 
-[permalinks]
-  post = "/:slug/"
-
 ```
+
+## Menu configuration
+
+On top right of the screen, a "Subscribe" button is displayed with a link to the RSS feed.
+
+When you define a menu in the main config file, Then a menu button is displayed instead of the subscribe button
+When the use clicks the menu button, a sidebar appears and shows the subscribe button and all items defined in the main config file
+
+Exemple of a menu definition in main config file, 
+
 
 Example : [config.toml](https://github.com/vjeantet/vjeantet.fr/blob/master/config.toml)
 
@@ -70,6 +78,11 @@ comments = true
 +++
 
 Contents here
+```
+
+# Create new content based with default metadata from this theme
+```
+hugo new -t casper post/my-post.md
 ```
 
 # Contact me

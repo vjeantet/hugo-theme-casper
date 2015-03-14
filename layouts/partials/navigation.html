@@ -1,0 +1,15 @@
+<div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        {{ range .Site.Menus.main }}
+            <li class="nav-opened " role="presentation">
+            	<a href="{{.Url}}">{{.Name}}</a>
+            </li>
+        {{end}}
+    </ul>
+    <a class="subscribe-button icon-feed" href="{{ .RSSLink }}">Subscribe</a>
+</div>
+<span class="nav-cover"></span>

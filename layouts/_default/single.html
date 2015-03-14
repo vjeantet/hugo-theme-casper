@@ -8,8 +8,15 @@
 <header class="main-header post-head no-cover">
   <nav class="main-nav clearfix">
 {{end}}
-    <a class="back-button icon-arrow-left" href="{{ .Site.BaseUrl }}">Home</a>
-    <a class="subscribe-button icon-feed" href="{{ .RSSLink }}">Subscribe</a>
+
+  {{ if .Site.Params.logo }}
+      <a class="blog-logo" href="{{.Site.BaseUrl}}"><img src="{{.Site.BaseUrl}}{{ .Site.Params.logo }}" alt="Home" /></a>
+  {{end}}
+  {{ if .Site.Menus.main }}
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  {{else}}
+      <a class="menu-button icon-feed" href="{{ .RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+  {{end}}
   </nav>
 </header>
 
@@ -71,11 +78,11 @@
           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
           <span class="hidden">Twitter</span>
       </a>
-      <a class="icon-facebook" style="font-size: 1.1em" href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}"
+      <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}"
           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
           <span class="hidden">Facebook</span>
       </a>
-      <a class="icon-google-plus" style="font-size: 1.1em" href="https://plus.google.com/share?url={{ .Permalink }}"
+      <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url={{ .Permalink }}"
          onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
           <span class="hidden">Google+</span>
       </a>
