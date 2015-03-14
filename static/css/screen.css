@@ -154,7 +154,7 @@ table { border-collapse: collapse; border-spacing: 0; }
     content: "\f203";
 }
 .icon-arrow-left:before {
-    content: "\f605";
+    content: "\f431";
 }
 .icon-stats:before {
     content: "\f606";
@@ -719,13 +719,10 @@ body.nav-opened .nav {
     margin-left: -16px;
     width: 34px;
     height: 34px;
-    font-size: 34px;
+    font-size: 44px;
     text-align: center;
     text-decoration: none;
     color: rgba(255,255,255,0.7);
-    -webkit-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
     -webkit-animation: bounce 4s 2s infinite;
     animation: bounce 4s 2s infinite;
 }
@@ -1863,30 +1860,30 @@ body:not(.post-template) .post-title {
 /* Used to bounce .scroll-down on home page */
 @-webkit-keyframes bounce {
     0%, 10%, 25%, 40%, 50% {
-        -webkit-transform: translateY(0) rotate(-90deg);
-                transform: translateY(0) rotate(-90deg);
+        -webkit-transform: translateY(0) ;
+                transform: translateY(0) ;
     }
     20% {
-        -webkit-transform: translateY(-10px) rotate(-90deg);
-                transform: translateY(-10px) rotate(-90deg);
+        -webkit-transform: translateY(-10px) ;
+                transform: translateY(-10px) ;
     }
     30% {
-        -webkit-transform: translateY(-5px) rotate(-90deg);
-                transform: translateY(-5px) rotate(-90deg);
+        -webkit-transform: translateY(-5px) ;
+                transform: translateY(-5px) ;
     }
 }
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
-        -webkit-transform: translateY(0) rotate(-90deg);
-                transform: translateY(0) rotate(-90deg);
+        -webkit-transform: translateY(0) ;
+                transform: translateY(0) ;
     }
     40% {
-        -webkit-transform: translateY(-10px) rotate(-90deg);
-                transform: translateY(-10px) rotate(-90deg);
+        -webkit-transform: translateY(-10px) ;
+                transform: translateY(-10px) ;
     }
     60% {
-        -webkit-transform: translateY(-5px) rotate(-90deg);
-                transform: translateY(-5px) rotate(-90deg);
+        -webkit-transform: translateY(-5px) ;
+                transform: translateY(-5px) ;
     }
 }
 
