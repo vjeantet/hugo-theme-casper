@@ -157,14 +157,13 @@ table { border-collapse: collapse; border-spacing: 0; }
     content: "\f431";
 }
 .icon-stats:before {
-    content: "\f606";
+    content: "\f508";
 }
 .icon-location:before {
-    content: "\f607";
-    margin-left: -3px; /* Tracking fix */
+    content: "\f417";
 }
 .icon-link:before {
-    content: "\f608";
+    content: "\f442";
 }
 
 
