@@ -106,11 +106,11 @@ table { border-collapse: collapse; border-spacing: 0; }
 /* Import the font file with the icons in it */
 @font-face {
   font-family: 'genericons';
-  src: url('../fonts/genericons.eot');
-  src: url('../fonts/genericons.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/genericons.woff') format('woff'),
-       url('../fonts/genericons.ttf') format('truetype'),
-       url('../fonts/genericons.svg#entypo') format('svg');
+  src: url('../fonts/Genericons.eot');
+  src: url('../fonts/Genericons.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Genericons.woff') format('woff'),
+       url('../fonts/Genericons.ttf') format('truetype'),
+       url('../fonts/Genericons.svg#entypo') format('svg');
   font-weight: normal; font-style: normal;
 }
 
