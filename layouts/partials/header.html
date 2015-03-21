@@ -36,8 +36,13 @@
     <link rel="stylesheet" type="text/css" href="{{.Site.BaseUrl}}css/screen.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
 
-    <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+    {{ if ne .Url "/" }}
+    <link href="{{ .Site.BaseUrl }}index.xml" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+    {{ end }}
     
+    {{if .IsNode}}
+    <link href="{{.RSSLink}}" rel="alternate" type="application/rss+xml" title="{{ if ne .Url "/" }}{{ .Title }} &middot; {{ end }}{{ .Site.Title }}" />
+    {{end}}
     {{.Hugo.Generator}}
 
     <link rel="canonical" href="{{ .Permalink }}" />
