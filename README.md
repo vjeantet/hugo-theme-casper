@@ -2,6 +2,7 @@
     
 
 Casper is a single-column theme for [Hugo](http://gohugo.io/).
+Ported from [Casper theme for Ghost ](https://github.com/TryGhost/Casper)
 
 blog demo : http://vjeantet.fr
 
@@ -51,6 +52,8 @@ Copyright = "All rights reserved - 2015"
   googleAnalyticsUserID = "UA-79101-12"
   githubName = "vjeantet"
   twitterName = "vjeantet"
+  # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
+  hideHUGOSupport = false
 
 ```
 
