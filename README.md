@@ -50,6 +50,8 @@ Copyright = "All rights reserved - 2015"
   bio= "my bio"
   logo = "images/logo.png"
   googleAnalyticsUserID = "UA-79101-12"
+  # Optional RSS-Link, if not provided it defaults to the standard index.xml
+  RSSLink = "http://feeds.feedburner.com/..." 
   githubName = "vjeantet"
   twitterName = "vjeantet"
   # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
