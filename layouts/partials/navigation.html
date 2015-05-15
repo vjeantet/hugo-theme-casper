@@ -10,6 +10,11 @@
             </li>
         {{end}}
     </ul>
+    
+    {{ if .Site.Params.RSSLink}}
+    <a class="subscribe-button icon-feed" href="{{.Site.Params.RSSLink }}">Subscribe</a> </div>
+    {{else}}
     <a class="subscribe-button icon-feed" href="{{if .IsNode}}{{.RSSLink}}{{else}}{{ .Site.BaseUrl }}index.xml{{end}}">Subscribe</a>
+    {{end}}
 </div>
 <span class="nav-cover"></span>
