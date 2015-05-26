@@ -30,10 +30,10 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="shortcut icon" href="{{.Site.BaseUrl}}images/favicon.ico">
-	  <link rel="apple-touch-icon" href="{{.Site.BaseUrl}}images/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="images/favicon.ico">
+	  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
     
-    <link rel="stylesheet" type="text/css" href="{{.Site.BaseUrl}}css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="css/screen.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
 
 
@@ -41,7 +41,7 @@
         <link href="{{.Site.Params.RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
     {{else}}
       {{ if ne .Url "/" }}
-          <link href="{{ .Site.BaseUrl }}index.xml" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+          <link href="index.xml" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
       {{ end }}
       {{if .IsNode}}
         <link href="{{.RSSLink}}" rel="alternate" type="application/rss+xml" title="{{ if ne .Url "/" }}{{ .Title }} &middot; {{ end }}{{ .Site.Title }}" />
