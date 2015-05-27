@@ -6,7 +6,7 @@
     <ul>
         {{ range .Site.Menus.main }}
             <li class="nav-opened " role="presentation">
-            	<a href="{{.Url}}">{{.Name}}</a>
+            	<a href="{{.URL}}">{{.Name}}</a>
             </li>
         {{end}}
     </ul>
@@ -14,7 +14,7 @@
     {{ if .Site.Params.RSSLink}}
     <a class="subscribe-button icon-feed" href="{{.Site.Params.RSSLink }}">Subscribe</a> </div>
     {{else}}
-    <a class="subscribe-button icon-feed" href="{{if .IsNode}}{{.RSSLink}}{{else}}{{ .Site.BaseUrl }}index.xml{{end}}">Subscribe</a>
+    <a class="subscribe-button icon-feed" href="{{if .IsNode}}{{.RSSLink}}{{else}}{{ .Site.BaseURL }}index.xml{{end}}">Subscribe</a>
     {{end}}
 </div>
 <span class="nav-cover"></span>

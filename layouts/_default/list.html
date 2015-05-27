@@ -1,5 +1,5 @@
 {{ partial "header.html" . }}
-{{ $baseurl := .Site.BaseUrl }}
+{{ $baseurl := .Site.BaseURL }}
 
 {{if .Params.cover}}
 	<header class="main-header tag-head" style="background-image: url({{ $baseurl }}{{.Params.cover}})">
@@ -10,7 +10,7 @@
 {{end}}
     <nav class="main-nav overlay clearfix">
       {{ if .Site.Params.logo }}
-        <a class="blog-logo" href="{{.Site.BaseUrl}}"><img src="{{.Site.BaseUrl}}{{ .Site.Params.logo }}" alt="Home" /></a>
+        <a class="blog-logo" href="{{.Site.BaseURL}}"><img src="{{.Site.BaseURL}}{{ .Site.Params.logo }}" alt="Home" /></a>
       {{end}}
       {{ if .Site.Menus.main }}
           <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
