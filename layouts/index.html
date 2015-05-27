@@ -43,13 +43,13 @@
 
 <main id="content" class="content" role="main">
 
-    {{ $paginator := .Paginator }}
+    {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
 
     <div class="extra-pagination inner">
         {{ partial "pagination.html" $paginator }}
     </div>
 
-    {{ range $index, $page := .Paginator.Pages }}
+    {{ range $index, $page := $paginator.Pages }}
         {{ .Render "li" }}
     {{ end }}
 

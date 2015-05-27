@@ -32,10 +32,11 @@
     <header class="post-header">
         <h1 class="post-title">{{.Title}}</h1>
         <section class="post-meta">
+        {{ if ne .Type "page"}}
           <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
             {{ .Date.Format "Jan 2, 2006" }}
           </time>
-
+        {{end}}
          {{ range .Params.tags }}
           <span class="post-tag small"><a href="{{ $baseurl }}tags/{{ . | urlize }}/">#{{ . }}</a></span>
          {{ end }}
@@ -70,10 +71,9 @@
         </div>
     </section>
 
-
-    
+    {{ if ne .Params.share false}}
     <section class="share">
-      <h4>Share this post</h4>
+      <h4>Share this {{ if .Type }}{{.Type}}{{else}}post{{end}}</h4>
       <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text={{ .Title | safeHTML}}&amp;url={{ .Permalink }}"
           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
           <span class="hidden">Twitter</span>
@@ -87,6 +87,7 @@
           <span class="hidden">Google+</span>
       </a>
     </section>
+    {{end}}
 
     {{ if ne .Params.comments false}}
     {{ with .Site.DisqusShortname }}

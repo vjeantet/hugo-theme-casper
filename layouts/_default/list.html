@@ -41,7 +41,7 @@
     {{ partial "pagination.html" $paginator }}
 	</div>
 
-	{{ range $index, $page := .Paginator.Pages }}
+	{{ range $index, $page := $paginator.Pages }}
 	   {{ .Render "li" }}
 	{{ end }}
 

@@ -4,8 +4,9 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
+        {{ $currentNode := . }}
         {{ range .Site.Menus.main }}
-            <li class="nav-opened " role="presentation">
+            <li class="nav-opened{{if $currentNode.IsMenuCurrent "main" . }} nav-current{{end}}" role="presentation">
             	<a href="{{.URL}}">{{.Name}}</a>
             </li>
         {{end}}
