@@ -6,6 +6,7 @@
     <ul>
         {{ $currentNode := . }}
         {{ range .Site.Menus.main }}
+            {{.Pre}}
             <li class="nav-opened{{if $currentNode.IsMenuCurrent "main" . }} nav-current{{end}}" role="presentation">
             	<a href="{{.URL}}">{{.Name}}</a>
             </li>
