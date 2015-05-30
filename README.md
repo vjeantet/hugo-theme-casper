@@ -18,6 +18,10 @@ blog source : https://github.com/vjeantet/vjeantet.fr
 * Pagination
 * Menu
 
+# Theme usage and asumptions
+* All blog posts are in the ```post``` folder (```content/post```)
+* The homepage displays a paginated list of contents from the post Section (other contents may be added to main menu, see bellow)
+
 # Installation
 
 ## Installing this theme
@@ -69,11 +73,12 @@ On top right of the screen, a "Subscribe" button is displayed with a link to the
 When you define a menu in the main config file, Then a menu button is displayed instead of the subscribe button
 When the use clicks the menu button, a sidebar appears and shows the subscribe button and all items defined in the main config file
 
+> :information_source: If your added a metadata like ```menu="main"``` in a content file metadata, it will also be displayed in the main menu
 
 Example of a menu definition in main config file.
-(If you add ```menu="main"```in the metadata of your content file, it will be displayed too)
 
-```
+
+``` toml
 [[menu.main]]
   name = "My Blog"
   weight = -120
@@ -90,7 +95,7 @@ Example of a menu definition in main config file.
 
 ## Metadata on each content file, example
 
-``` markdown
+``` toml
 +++
 date = "2014-07-11T10:54:24+02:00"
 draft = false
@@ -98,8 +103,9 @@ title = "dotScale 2014 as a sketch"
 slug = "dotscale-2014-as-a-sketch"
 tags = ["event","dotScale","sketchnote"]
 image = "images/2014/Jul/titledotscale.png"
-comments = true
-share = true
+comments = true     # set false to hide Disqus comments
+share = true        # set false to share buttons
+menu = ""           # set "main" to add this content to the main menu
 +++
 
 Contents here
@@ -111,14 +117,8 @@ You can easyly create a new content with all metadatas used by this theme, using
 hugo new -t casper post/my-post.md
 ```
 
-You can easily create a new blank page, with menu integration, with all metadatas used by this theme, using this command 
-```
-hugo new -t casper about.md --kind=page
-```
-
-
 # Contact me
 
-open an issue in github
+:beetle: open an issue in github
 
-[https://twitter.com/vjeantet](https://twitter.com/vjeantet)
+:bird: [https://twitter.com/vjeantet](https://twitter.com/vjeantet)
