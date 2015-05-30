@@ -1,0 +1,52 @@
+{{ partial "header.html" . }}
+
+{{if .Site.Params.cover}}
+<header class="main-header " style="background-image: url({{.Site.BaseURL}}{{.Site.Params.cover}})">
+{{else}}
+<header class="main-header no-cover">
+{{end}}
+
+<nav class="main-nav overlay clearfix">
+        {{ if .Site.Params.logo }}
+            <a class="blog-logo" href="{{ .Permalink }}"><img src="{{.Site.BaseURL}}{{ .Site.Params.logo }}" alt="Blog Logo" /></a>
+        {{end}}
+        {{ if .Site.Menus.main }}
+            <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+        {{else}}
+            {{ if .Site.Params.RSSLink}}
+              <a class="menu-button icon-feed" href="{{.Site.Params.RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+            {{else}}
+              <a class="menu-button icon-feed" href="{{ .RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+            {{end}}
+        {{end}}
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            {{ if .Site.Params.githubName }}
+                <a  href="https://github.com/{{ .Site.Params.githubName }}">
+                <span class="icon-github" style="color:white;font-size:2em"></span>
+                </a>
+            {{end}}
+            &nbsp;
+            {{ if .Site.Params.twitterName }}
+                <a class="bloglogo" href="https://twitter.com/{{ .Site.Params.twitterName }}">
+                    <span class="icon-twitter" style="color:white;font-size:2em"></span>
+                </a>
+            {{end}}
+            <h1 class="page-title">{{ .Site.Title }}</h1>
+            <h2 class="page-description">{{ .Site.Params.description }}</h2>
+        </div>
+    </div>
+    <a class="scroll-down icon-arrow-left" href="#content"><span class="hidden">Scroll Down</span></a>
+</header>
+
+
+<main id="content" class="content" role="main">
+
+  <article class="post">
+    <h1>404 Not Found</h1>
+    <p>Sorry, but we couldn't find the page you're looking for.</p>
+    <p>Please head back <a href="/">home</a>.</p>
+  </article>
+
+{{ partial "footer.html" . }}
