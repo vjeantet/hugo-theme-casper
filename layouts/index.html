@@ -43,7 +43,7 @@
 
 <main id="content" class="content" role="main">
 
-    {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
+    {{ $paginator := .Paginate (where .Data.Pages "Section" "post") }}
 
     <div class="extra-pagination inner">
         {{ partial "pagination.html" $paginator }}
