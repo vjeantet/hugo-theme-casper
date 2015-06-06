@@ -57,19 +57,7 @@
     </figure>
     {{end}}
 
-
-    <section class="author">
-        <h4><a href="{{.Site.BaseURL}}">{{.Site.Params.author}}</a></h4>
-        {{if .Site.Params.bio}}
-            <p>{{.Site.Params.bio}}</p>
-        {{else}}
-            <p>Read <a href="{{.Site.BaseURL}}">more posts</a> by this author.</p>
-        {{end}}
-        <div class="author-meta">
-            {{if .Site.Params.authorlocation}}<span class="author-location icon-location">{{.Site.Params.authorlocation}}</span>{{end}}
-            {{if .Site.Params.authorwebsite}}<span class="author-link icon-link"><a href="{{.Site.Params.authorwebsite}}">{{.Site.Params.authorwebsite}}</a></span>{{end}}
-        </div>
-    </section>
+    {{ partial "author.html" . }}
 
     {{ if ne .Params.share false}}
     <section class="share">
