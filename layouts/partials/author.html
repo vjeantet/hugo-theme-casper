@@ -1,0 +1,19 @@
+{{ if not .Params.noauthor }}
+{{$author := index .Site.Data.authors (or .Params.author .Site.Params.author)}}
+{{$authorname := or $author.name .Site.Params.author }}
+{{$authorbio := or $author.bio .Site.Params.bio }}
+{{$authorlocation := or $author.location .Site.Params.authorlocation }}
+{{$authorwebsite := or $author.website .Site.Params.authorwebsite }}
+<section class="author">
+  <h4><a href="{{.Site.BaseURL}}">{{$authorname}}</a></h4>
+  {{if $authorbio}}
+  <p>{{$authorbio}}</p>
+  {{else}}
+  <p>Read <a href="{{.Site.BaseURL}}">more posts</a> by this author.</p>
+  {{end}}
+  <div class="author-meta">
+    {{with $authorlocation}}<span class="author-location icon-location">{{.}}</span>{{end}}
+    {{with $authorwebsite}}<span class="author-link icon-link"><a href="{{.}}">{{.}}</a></span>{{end}}
+  </div>
+</section>
+{{end}}
