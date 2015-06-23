@@ -45,6 +45,7 @@ Title= "My blog is awesome"
 paginate = 5
 DisqusShortname = "YOUR_SHORT_NAME_HERE"
 Copyright = "All rights reserved - 2015"
+canonifyurls = true
 
 [params]
   description = "this is my description"
