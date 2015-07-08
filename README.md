@@ -86,6 +86,19 @@ website: http://example.com
 
 ```
 
+Example override author per page file:
+``` toml
++++
+author = ""
+date = "2014-07-11T10:54:24+02:00"
+title = ""
+...
++++
+
+Contents here
+
+```
+
 ## Menu configuration
 
 On top right of the screen, a "Subscribe" button is displayed with a link to the RSS feed.
@@ -117,6 +130,7 @@ Example of a menu definition in main config file.
 
 ``` toml
 +++
+author = ""
 date = "2014-07-11T10:54:24+02:00"
 draft = false
 title = "dotScale 2014 as a sketch"
