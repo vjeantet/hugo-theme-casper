@@ -41,7 +41,7 @@ blog source : https://github.com/vjeantet/vjeantet.fr
 **config.toml**
 
 ``` toml
-BaseUrl= "http://example.com"
+BaseUrl= "http://example.com/"
 LanguageCode= "fr-FR"
 Title= "My blog is awesome"
 paginate = 5
