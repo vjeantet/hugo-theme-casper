@@ -30,7 +30,36 @@
   <article class="post {{ .Section }}">
 
     <header class="post-header">
+
+      {{if ne .Type "post"}}
+        <nav class="breadcrumb">
+          {{ $currentNode := . }}
+          {{ range .Site.Menus.main }}
+          {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
+          <li><a href="{{.URL}}">{{.Name}}</a></li>
+                {{ range .Children }}
+                {{ if .HasChildren }}
+                {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
+                  <li><a href="{{.URL}}">{{.Name}}</a></li>
+                    {{ range .Children }}
+                    {{ if .HasChildren }}
+                    {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
+                      <li><a href="{{.URL}}">{{.Name}}</a></li>
+                    {{end}}
+                    {{end}}
+                    {{end}}
+                {{end}}
+                {{end}}
+                {{end}}
+          {{end}}
+          {{end}}
+          <!-- <li>{{.Title}}</li> -->
+        </nav>
+      {{end}}
+
         <h1 class="post-title">{{.Title}}</h1>
+        <small>{{.Description}}</small>
+
         <section class="post-meta">
         {{ if eq .Section "post"}}
           <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
@@ -44,7 +73,60 @@
     </header>
   
     <section class="post-content">
-      {{ .Content }}
+
+
+{{ .Content }}
+
+
+{{if ne .Params.index true}}
+{{if .Menus.main.HasChildren }}
+<nav class="navchildren">
+  <ul>
+    <!-- Children contents -->
+    
+    {{ range .Menus.main.Children }}
+    <li><a href="{{.URL}}" >{{ .Name }}</a></li>
+    {{ end }}
+    
+  </ul>
+</nav>
+{{ end }}
+{{ end }}
+
+{{if eq .Params.index true}}
+<nav class="navpage">
+  
+{{ $currentNode := . }}
+{{ range .Site.Menus.main }}
+{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
+      {{ range .Children }}
+      <ul>
+      <li><a href="{{.URL}}">{{.Name}}</a>
+      {{ if .HasChildren }}
+        <ul>
+        {{ range .Children }}
+          <li><a href="{{.URL}}">{{.Name}}</a>
+          {{ if .HasChildren }}
+            <ul>
+            {{ range .Children }}
+            <li><a href="{{.URL}}">{{ .Name }}</a></li>
+            {{ end }}
+            </ul>
+          {{ end }}
+        {{ end }}
+        </ul>
+      {{ end }}
+      </li>
+      </ul>
+      {{ end }}
+      
+      
+{{end}}
+{{end}}
+
+</nav>
+{{end}}
+
     </section>
 
 
