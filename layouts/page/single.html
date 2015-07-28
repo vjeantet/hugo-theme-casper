@@ -1,23 +1,43 @@
 {{ partial "header.html" . }}
 {{ $baseurl := .Site.BaseURL }}
 
+
 {{if .Params.image}}
 <header class="main-header post-head" style="background-image: url({{ $baseurl }}{{.Params.image}})">
   <nav class="main-nav overlay clearfix">
 {{else}}
 <header class="main-header post-head no-cover">
-  <nav class="main-nav clearfix">
+    <nav class="main-nav overlay clearfix">
 {{end}}
 
-  {{ if .Site.Params.logo }}
-      <a class="blog-logo" href="{{.Site.BaseURL}}"><img src="{{.Site.BaseURL}}{{ .Site.Params.logo }}" alt="Home" /></a>
-  {{end}}
-  {{ if .Site.Menus.main }}
-      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
-  {{else}}
-      <a class="menu-button icon-feed" href="{{ .Site.BaseURL }}index.xml">&nbsp;&nbsp;Subscribe</a>
-  {{end}}
-  </nav>
+      {{ if .Site.Params.logo }}
+        <a class="blog-logo" href="{{.Site.BaseURL}}"><img src="{{.Site.BaseURL}}{{ .Site.Params.logo }}" alt="Home" /></a>
+      {{end}}
+      {{ if .Site.Menus.main }}
+          <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+      {{else}}
+        {{ if .Site.Params.RSSLink}}
+          <a class="menu-button icon-feed" href="{{.Site.Params.RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+        {{else}}
+          <a class="menu-button icon-feed" href="{{ .RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+        {{end}}
+      {{end}}
+    </nav>
+
+    {{if eq .Params.index true}}
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">{{.Title}}</h1>
+            <h2 class="page-description">
+                {{if .Params.description}}
+                    {{.Params.description}}
+                {{end}}
+            </h2>
+        </div>
+    </div>
+    {{end}}
+
+
 </header>
 
 
@@ -28,8 +48,32 @@
 
 
   <article class="post {{ .Section }}">
-
     <header class="post-header">
+      <nav class="breadcrumb">
+        {{ $currentNode := . }}
+        {{ range .Site.Menus.main }}
+        {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
+        <li><a href="{{.URL}}">{{.Name}}</a></li>
+              {{ range .Children }}
+              {{ if .HasChildren }}
+              {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
+                <li><a href="{{.URL}}">{{.Name}}</a></li>
+                  {{ range .Children }}
+                  {{ if .HasChildren }}
+                  {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
+                    <li><a href="{{.URL}}">{{.Name}}</a></li>
+                  {{end}}
+                  {{end}}
+                  {{end}}
+              {{end}}
+              {{end}}
+              {{end}}
+        {{end}}
+        {{end}}
+        <!-- <li>{{.Title}}</li> -->
+      </nav>
+      
+
         <h1 class="post-title">{{.Title}}</h1>
         <small>{{.Description}}</small>
 
@@ -46,7 +90,60 @@
     </header>
   
     <section class="post-content">
-      {{ .Content }}
+
+
+{{ .Content }}
+
+
+{{if ne .Params.index true}}
+{{if .Menus.main.HasChildren }}
+<nav class="navchildren">
+  <ul>
+    <!-- Children contents -->
+    
+    {{ range .Menus.main.Children }}
+    <li><a href="{{.URL}}" >{{ .Name }}</a></li>
+    {{ end }}
+    
+  </ul>
+</nav>
+{{ end }}
+{{ end }}
+
+{{if eq .Params.index true}}
+<nav class="navpage">
+  
+{{ $currentNode := . }}
+{{ range .Site.Menus.main }}
+{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
+      {{ range .Children }}
+      <ul>
+      <li><a href="{{.URL}}">{{.Name}}</a>
+      {{ if .HasChildren }}
+        <ul>
+        {{ range .Children }}
+          <li><a href="{{.URL}}">{{.Name}}</a>
+          {{ if .HasChildren }}
+            <ul>
+            {{ range .Children }}
+            <li><a href="{{.URL}}">{{ .Name }}</a></li>
+            {{ end }}
+            </ul>
+          {{ end }}
+        {{ end }}
+        </ul>
+      {{ end }}
+      </li>
+      </ul>
+      {{ end }}
+      
+      
+{{end}}
+{{end}}
+
+</nav>
+{{end}}
+
     </section>
 
 
