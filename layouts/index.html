@@ -33,6 +33,11 @@
                     <span class="icon-twitter" style="color:white;font-size:2em"></span>
                 </a>
             {{end}}
+            {{ if .Site.Params.facebookName }}
+                <a class="bloglogo" href="https://www.facebook.com/{{ .Site.Params.facebookName }}">
+                    <span class="icon-facebook" style="color:white;font-size:2em"></span>
+                </a>
+            {{end}}
             <h1 class="page-title">{{ .Site.Title }}</h1>
             <h2 class="page-description">{{ .Site.Params.description }}</h2>
         </div>
