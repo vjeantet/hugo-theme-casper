@@ -8,6 +8,8 @@
     <script type="text/javascript" src="{{.Site.BaseURL}}js/jquery.js"></script>
     <script type="text/javascript" src="{{.Site.BaseURL}}js/jquery.fitvids.js"></script>
     <script type="text/javascript" src="{{.Site.BaseURL}}js/index.js"></script>
-
+    {{ if .Site.Params.customFooterPartial }}
+        {{ partial .Site.Params.customFooterPartial . }}
+    {{ end }}
 </body>
 </html>
