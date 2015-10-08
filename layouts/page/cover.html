@@ -24,7 +24,7 @@
       {{end}}
     </nav>
 
-    
+
     <div class="vertical">
         <div class="main-header-content inner">
             <h1 class="page-title">{{.Title}}</h1>
@@ -35,7 +35,7 @@
             </h2>
         </div>
     </div>
-    
+
 
 
 </header>
@@ -49,7 +49,7 @@
 
   <article class="post {{ .Section }}">
     <header class="post-header">
-      
+
         <section class="post-meta">
         {{ if eq .Section "post"}}
           <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
@@ -61,7 +61,7 @@
          {{ end }}
         </section>
     </header>
-  
+
     <section class="post-content">
 
 
@@ -70,7 +70,7 @@
 
 
 <nav class="navpage">
-  
+
 {{ $currentNode := . }}
 {{ range .Site.Menus.main }}
 {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
@@ -94,8 +94,8 @@
       </li>
       </ul>
       {{ end }}
-      
-      
+
+
 {{end}}
 {{end}}
 
@@ -134,20 +134,7 @@
     </section>
     {{end}}
 
-    {{ if ne .Params.comments false}}
-    {{ with .Site.DisqusShortname }}
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      var disqus_shortname = '{{ . }}';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    {{ end }}
-    {{ end }}
+    {{ partial "disqus.html" . }}
 
   </footer>
 </article>

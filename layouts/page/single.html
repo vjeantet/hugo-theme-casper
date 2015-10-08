@@ -72,7 +72,7 @@
         {{end}}
         <!-- <li>{{.Title}}</li> -->
       </nav>
-      
+
 
         <h1 class="post-title">{{.Title}}</h1>
         <small>{{.Description}}</small>
@@ -88,7 +88,7 @@
          {{ end }}
         </section>
     </header>
-  
+
     <section class="post-content">
 
 
@@ -100,11 +100,11 @@
 <nav class="navchildren">
   <ul>
     <!-- Children contents -->
-    
+
     {{ range .Menus.main.Children }}
     <li><a href="{{.URL}}" >{{ .Name }}</a></li>
     {{ end }}
-    
+
   </ul>
 </nav>
 {{ end }}
@@ -112,7 +112,7 @@
 
 {{if eq .Params.index true}}
 <nav class="navpage">
-  
+
 {{ $currentNode := . }}
 {{ range .Site.Menus.main }}
 {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
@@ -136,8 +136,8 @@
       </li>
       </ul>
       {{ end }}
-      
-      
+
+
 {{end}}
 {{end}}
 
@@ -176,20 +176,7 @@
     </section>
     {{end}}
 
-    {{ if ne .Params.comments false}}
-    {{ with .Site.DisqusShortname }}
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      var disqus_shortname = '{{ . }}';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    {{ end }}
-    {{ end }}
+    {{ partial "disqus.html" . }}
 
   </footer>
 </article>
