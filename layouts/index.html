@@ -5,7 +5,7 @@
 {{else}}
 <header class="main-header no-cover">
 {{end}}
-    
+
     <nav class="main-nav overlay clearfix">
         {{ if .Site.Params.logo }}
             <a class="blog-logo" href="{{ .Permalink }}"><img src="{{.Site.BaseURL}}{{ .Site.Params.logo }}" alt="Blog Logo" /></a>
@@ -48,7 +48,14 @@
 
 <main id="content" class="content" role="main">
 
-    {{ $paginator := .Paginate (where .Data.Pages "Section" "post") }}
+    {{ if not ($.Scratch.Get "paginatedSections") }}
+        {{ if isset .Site.Params "paginatedSections" }}
+            {{ $.Scratch.Set "paginatedSections" .Site.Params.paginatedSections }}
+        {{ else }}
+            {{ $.Scratch.Set "paginatedSections" "post" }}
+        {{ end }}
+    {{ end }}
+    {{ $paginator := .Paginate ( where .Data.Pages "Section" "in" ($.Scratch.Get "paginatedSections") ) }}
 
     <div class="extra-pagination inner">
         {{ partial "pagination.html" $paginator }}
