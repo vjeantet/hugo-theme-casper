@@ -38,6 +38,16 @@
                     <span class="icon-facebook" style="color:white;font-size:2em"></span>
                 </a>
             {{end}}
+            {{ if .Site.Params.instagramName }}
+                <a class="bloglogo" href="https://instagram.com/{{ .Site.Params.instagramName }}">
+                    <span class="icon-instagram" style="color:white;font-size:2em"></span>
+                </a>
+            {{end}}
+            {{ if .Site.Params.googlePlusName }}
+                <a class="bloglogo" href="https://google.com/+{{ .Site.Params.googlePlusName }}">
+                    <span class="icon-google-plus" style="color:white;font-size:2em"></span>
+                </a>
+            {{end}}
             <h1 class="page-title">{{ .Site.Title }}</h1>
             <h2 class="page-description">{{ .Site.Params.description }}</h2>
         </div>
