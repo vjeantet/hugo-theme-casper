@@ -153,6 +153,12 @@ table { border-collapse: collapse; border-spacing: 0; }
 .icon-facebook:before {
     content: "\f203";
 }
+.icon-instagram:before {
+    content: "\f215";
+}
+.icon-pinterest:before {
+    content: "\f210";
+}
 .icon-arrow-left:before {
     content: "\f431";
 }
@@ -1157,7 +1163,7 @@ body:not(.post-template) .post-title {
     position: absolute;
     top: 6rem;
     right: 0;
-    width: 140px;
+    width: 180px;
 }
 
 .post-footer .share a {
