@@ -64,6 +64,14 @@
 
 <main id="content" class="content" role="main">
 
+    {{ range .Data.Pages }}
+        {{if eq .Type "index" }}
+        <div class="index-content post">
+        {{.Content}}
+        </div>
+        {{end}}
+    {{ end }}
+
     {{ if not ($.Scratch.Get "paginatedSections") }}
         {{ if isset .Site.Params "paginatedSections" }}
             {{ $.Scratch.Set "paginatedSections" .Site.Params.paginatedSections }}
