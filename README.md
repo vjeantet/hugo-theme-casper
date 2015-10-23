@@ -86,6 +86,7 @@ name: John Doe
 bio: The most uninteresting man in the world.
 location: Normal, IL
 website: http://example.com
+thumbnail: images/john.png
 
 ```
 
