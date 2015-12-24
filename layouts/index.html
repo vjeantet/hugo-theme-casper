@@ -89,7 +89,10 @@
             {{ $.Scratch.Set "paginatedSections" "post" }}
         {{ end }}
     {{ end }}
-    {{ $paginator := .Paginate ( where .Data.Pages "Section" "in" ($.Scratch.Get "paginatedSections") ) }}
+    
+    {{ $list := where .Data.Pages "Section" "in" ($.Scratch.Get "paginatedSections") }}
+    {{ $list := where $list "Section" "!=" "" }}
+    {{ $paginator := .Paginate ( $list ) }}
 
     <div class="extra-pagination inner">
         {{ partial "pagination.html" $paginator }}
