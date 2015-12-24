@@ -22,17 +22,25 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
+            {{ if .Site.Params.linkedinName }}
+                <a class="bloglogo" href="https://www.linkedin.com/in/{{ .Site.Params.linkedinName }}">
+                    <span class="icon-linkedin" style="color:white;font-size:2em"></span>
+                </a>
+            &nbsp;
+            {{end}}
             {{ if .Site.Params.githubName }}
                 <a  href="https://github.com/{{ .Site.Params.githubName }}">
                 <span class="icon-github" style="color:white;font-size:2em"></span>
                 </a>
-            {{end}}
             &nbsp;
+            {{end}}
             {{ if .Site.Params.twitterName }}
                 <a class="bloglogo" href="https://twitter.com/{{ .Site.Params.twitterName }}">
                     <span class="icon-twitter" style="color:white;font-size:2em"></span>
                 </a>
+            &nbsp;
             {{end}}
+
             <h1 class="page-title">{{ .Site.Title }}</h1>
             <h2 class="page-description">{{ .Site.Params.description }}</h2>
         </div>
