@@ -159,6 +159,9 @@ table { border-collapse: collapse; border-spacing: 0; }
 .icon-pinterest:before {
     content: "\f210";
 }
+.icon-linkedin:before {
+    content: "\f208";
+}
 .icon-arrow-left:before {
     content: "\f431";
 }

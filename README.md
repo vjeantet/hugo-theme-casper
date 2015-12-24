@@ -63,6 +63,7 @@ canonifyurls = true
   githubName = "vjeantet"
   twitterName = "vjeantet"
   # facebookName = ""
+  # linkedinName = ""
   # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
   hideHUGOSupport = false
 
