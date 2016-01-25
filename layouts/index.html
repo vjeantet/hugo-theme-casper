@@ -1,7 +1,7 @@
 {{ partial "header.html" . }}
 
 {{if .Site.Params.cover}}
-<header class="main-header " style="background-image: url({{.Site.BaseURL}}{{.Site.Params.cover}})">
+<header class="main-header " style="background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{.Site.BaseURL}}{{.Site.Params.cover}})">
 {{else}}
 <header class="main-header no-cover">
 {{end}}
