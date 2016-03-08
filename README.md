@@ -55,6 +55,7 @@ canonifyurls = true
   author = "Valère JEANTET"
   authorlocation = "Paris, France"
   authorwebsite = "http://vjeantet.fr"
+  authoravatar = "images/avatar.png"
   bio= "my bio"
   logo = "images/logo.png"
   googleAnalyticsUserID = "UA-79101-12"
