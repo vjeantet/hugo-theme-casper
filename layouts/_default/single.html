@@ -1,5 +1,6 @@
 {{ partial "header.html" . }}
 {{ $baseurl := .Site.BaseURL }}
+{{$author := index .Site.Author (or .Params.author .Site.Params.author)}}
 
 {{if .Params.image}}
 <header class="main-header post-head" style="background-image: url({{ $baseurl }}{{.Params.image}})">
@@ -53,9 +54,13 @@
   <footer class="post-footer">
 
 
-    {{if .Site.Params.authoravatar}}
+    {{if $author.thumbnail}}
     <figure class="author-image">
-        <a class="img" href="{{.Site.BaseURL}}" style="background-image: url({{ $baseurl }}{{.Site.Params.authoravatar}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
+        <a class="img" href="{{.Site.BaseURL}}" style="background-image: url({{ $baseurl }}{{$author.thumbnail}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
+    </figure>
+    {{else if .Site.Params.logo}}
+    <figure class="author-image">
+      <a class="img" href="{{.Site.BaseURL}}" style="background-image: url({{ $baseurl }}{{.Site.Params.logo}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
     </figure>
     {{end}}
 

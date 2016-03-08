@@ -1,4 +1,6 @@
 {{ $baseurl := .Site.BaseURL }}
+{{$author := index .Site.Author (or .Params.author .Site.Params.author)}}
+
 <article class="post {{ .Section }}">
     <header class="post-header">
         <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
@@ -7,11 +9,10 @@
         <p>{{ .Summary }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
     </section>
     <footer class="post-meta">
-        {{$author := index .Site.Data.authors .Params.author }}
-        {{ if isset $author "thumbnail" }}
+        {{ if $author.thumbnail }}
             <img class="author-thumb" src="{{ .Site.BaseURL }}{{ $author.thumbnail }}" alt="Author image" nopin="nopin" />
-        {{else if .Site.Params.authoravatar }}
-            <img class="author-thumb" src="{{ .Site.BaseURL }}{{.Site.Params.authoravatar}}" alt="Author image" nopin="nopin" />
+        {{else if .Site.Params.logo }}
+            <img class="author-thumb" src="{{ .Site.BaseURL }}{{.Site.Params.logo}}" alt="Author image" nopin="nopin" />
         {{end}}
         {{if and (ne .Params.author .Site.Params.author) .Params.author}}
         {{$author := index .Site.Data.authors .Params.author }}
