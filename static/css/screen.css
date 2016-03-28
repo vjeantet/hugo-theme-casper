@@ -520,6 +520,10 @@ body.nav-opened .site-wrapper {
     width: 80%;
 }
 
+.main-header a.bloglogo {
+    text-decoration: none;
+}
+
 .main-nav {
     position: relative;
     padding: 35px 40px;
