@@ -7,14 +7,20 @@
         <p>{{ .Summary }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
     </section>
     <footer class="post-meta">
-        {{$author := index .Site.Data.authors .Params.author }}
+        {{$author:= .Site.Params.author}}
+        {{if .Params.author }}
+            {{$author:= .Params.author}}
+            {{if isset .Site.Data.authors $author}}
+                {{$author := index .Site.Data.authors .Params.author }}
+            {{end}}
+        {{end}}
+
         {{ if isset $author "thumbnail" }}
             <img class="author-thumb" src="{{ .Site.BaseURL }}{{ $author.thumbnail }}" alt="Author image" nopin="nopin" />
         {{else if .Site.Params.logo }}
             <img class="author-thumb" src="{{ .Site.BaseURL }}{{.Site.Params.logo}}" alt="Author image" nopin="nopin" />
         {{end}}
-        {{if and (ne .Params.author .Site.Params.author) .Params.author}}
-        {{$author := index .Site.Data.authors .Params.author }}
+        {{ if isset $author "name" }}
             {{$author.name}}
         {{else if .Site.Params.author}}
             {{.Site.Params.author}}
