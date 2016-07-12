@@ -150,12 +150,6 @@ menu = ""           # set "main" to add this content to the main menu
 Contents here
 ```
 
-## Create new content based with default metadata from this theme
-You can easyly create a new content with all metadatas used by this theme, using this command 
-```
-hugo new -t casper post/my-post.md
-```
-
 # Contact me
 
 :beetle: open an issue in github
