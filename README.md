@@ -19,6 +19,7 @@ blog source : https://github.com/vjeantet/vjeantet.fr
 * Tagging
 * Pagination
 * Menu
+* Syntax Highlighting
 
 # Theme usage and asumptions
 * All blog posts are in the ```post``` folder (```content/post```)
@@ -66,6 +67,10 @@ canonifyurls = true
   # linkedinName = ""
   # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
   hideHUGOSupport = false
+  # Setting a value will load highlight.js and enable syntax highlighting using the style selected.
+  # See https://github.com/isagalaev/highlight.js/tree/master/src/styles for available styles
+  # A preview of above styles can be viewed at https://highlightjs.org/static/demo/
+  hjsStyle = "default"
 
 ```
 
