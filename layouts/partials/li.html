@@ -4,7 +4,13 @@
         <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>{{ .Summary }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
+        {{if isset .Params "excerpt" }}
+            {{ if .Params.excerpt }}
+                <p>{{ .Params.excerpt }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
+            {{end}}
+        {{else}}
+            <p>{{ .Summary }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
+        {{end}}
     </section>
     <footer class="post-meta">
         {{$author:= .Site.Params.author}}
