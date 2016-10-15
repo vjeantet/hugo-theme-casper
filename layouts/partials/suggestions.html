@@ -1,0 +1,17 @@
+<aside class="read-next">
+  {{ with .Next }}
+      <a class="read-next-story" style="{{ if .Params.image }}background-image: url({{ .Site.BaseURL }}{{ .Params.image }}){{ else }}no-cover{{ end }}" href="{{ .RelPermalink }}">
+          <section class="post">
+              <h2>{{.Title}}</h2>
+              <!-- <p>{{ substr .Summary 0  }}</p> -->
+          </section>
+      </a>
+  {{ end }}
+  {{ with .Prev }}
+      <a class="read-next-story prev" style="{{ if .Params.image }}background-image: url({{ .Site.BaseURL }}{{ .Params.image }}){{ else }}no-cover{{ end }}" href="{{ .RelPermalink }}">
+          <section class="post">
+              <h2>{{.Title}}</h2>
+          </section>
+      </a>
+  {{ end }}
+</aside>
