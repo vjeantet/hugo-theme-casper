@@ -1,5 +1,5 @@
 # CASPER theme for hugo
-    
+
 
 Casper is a single-column theme for [Hugo](http://gohugo.io/).
 Ported from [Casper theme for Ghost ](https://github.com/TryGhost/Casper)
@@ -59,13 +59,15 @@ canonifyurls = true
   logo = "images/logo.png"
   googleAnalyticsUserID = "UA-79101-12"
   # Optional RSS-Link, if not provided it defaults to the standard index.xml
-  RSSLink = "http://feeds.feedburner.com/..." 
+  RSSLink = "http://feeds.feedburner.com/..."
   githubName = "vjeantet"
   twitterName = "vjeantet"
   # facebookName = ""
   # linkedinName = ""
   # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
   hideHUGOSupport = false
+  [params.social]
+    twitter = "your_twitter"
 
 ```
 
@@ -128,7 +130,7 @@ Example of a menu definition in main config file.
   weight = -110
   identifier = "about"
   url = "/about"
-  
+
 ```
 
 ## Metadata on each content file, example
@@ -151,7 +153,7 @@ Contents here
 ```
 
 ## Create new content based with default metadata from this theme
-You can easyly create a new content with all metadatas used by this theme, using this command 
+You can easyly create a new content with all metadatas used by this theme, using this command
 ```
 hugo new -t casper post/my-post.md
 ```

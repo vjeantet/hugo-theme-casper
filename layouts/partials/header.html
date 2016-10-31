@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    {{ partial "twitter_card.html" . }}
+
   	<meta property="og:title" content="{{ if ne .URL "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}" />
   	<meta property="og:site_name" content="{{ .Site.Title }}" />
   	<meta property="og:url" content="{{ .Permalink }}" />
@@ -21,9 +23,9 @@
     <meta property="og:type" content="website" />
     {{ end }}
 
-  <title>
-    {{ if ne .URL "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}
-  </title>
+    <title>
+      {{ if ne .URL "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}
+    </title>
 
     <meta name="description" content="{{ .Site.Params.description }}" />
 

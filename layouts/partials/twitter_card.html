@@ -1,0 +1,21 @@
+{{ $baseUrl := .Site.BaseURL }}
+
+{{ if .IsPage }}
+    {{ with .Params.image }}
+        <!-- Twitter summary card with large image must be at least 280x150px -->
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:image" content="{{ $baseUrl }}{{ . }}"/>
+    {{ else }}
+        <meta name="twitter:card" content="summary"/>
+    {{ end }}
+{{ else }}
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content="{{ $baseUrl }}{{ .Site.Params.cover }}"/>
+{{ end }}
+
+<!-- Twitter Card data -->
+<meta name="twitter:title" content="{{ .Title }}"/>
+<meta name="twitter:description" content="{{if .IsPage}}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
+{{ with .Site.Params.social.twitter }}
+    <meta name="twitter:site" content="@{{ . }}"/>
+{{ end }}
