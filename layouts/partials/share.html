@@ -1,4 +1,4 @@
-{{ if ne .Site.Params.share false}}
+{{ if ne .Params.share false}}
 <section class="share">
   <h4>Share this {{ if .Type }}{{.Type}}{{else}}post{{end}}</h4>
   <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text={{ .Title | safeHTML}}&nbsp;-&nbsp;{{ .Site.Title }}&amp;url={{ .Permalink }}"
