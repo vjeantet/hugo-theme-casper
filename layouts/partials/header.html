@@ -27,7 +27,11 @@
       {{ if ne .URL "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}
     </title>
 
-    <meta name="description" content="{{ .Site.Params.description }}" />
+    {{ if .IsPage }}
+    <meta name="description" content="{{ .Description | default (substr .Summary 0 160) }}" />
+    {{ else }}
+    <meta name="description" content="{{ .Site.Params.metadescription | default .Site.Params.description }}" />
+    {{ end }}
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
