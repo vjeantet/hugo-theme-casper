@@ -15,7 +15,6 @@
 
 <!-- Twitter Card data -->
 <meta name="twitter:title" content="{{ .Title }}"/>
-<meta name="twitter:description" content="{{if .IsPage}}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
-{{ with .Site.Params.social.twitter }}
-    <meta name="twitter:site" content="@{{ . }}"/>
-{{ end }}
+<meta name="twitter:description" content="{{if .IsPage}}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
+<meta name="twitter:site" content="@{{ .Site.Params.twitterName }}"/>
+

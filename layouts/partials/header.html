@@ -12,8 +12,9 @@
   	<meta property="og:url" content="{{ .Permalink }}" />
 
     {{ if .IsPage }}
+    <meta property="og:description" content="{{ .Description }}" />
   	<meta property="og:type" content="article" />
-
+    <meta property="og:image" content="{{ .Site.BaseURL }}{{ .Params.image }}" />
     <meta property="og:article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}" />
 
     {{ range .Params.tags }}
@@ -21,13 +22,18 @@
     {{ end }}
     {{ else }}
     <meta property="og:type" content="website" />
+    <meta property="og:description" content="{{ .Site.Params.description }}" />
     {{ end }}
 
     <title>
       {{ if ne .URL "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}
     </title>
 
+    {{ if .IsPage }}
+    <meta name="description" content="{{ .Description }}" />
+    {{ else }}
     <meta name="description" content="{{ .Site.Params.description }}" />
+    {{ end }}
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,6 +59,12 @@
     {{.Hugo.Generator}}
 
     <link rel="canonical" href="{{ .Permalink }}" />
+
+    {{ if .Params.customSemanticPartial }}
+      {{ partial .Params.customSemanticPartial . }}
+    {{ else }}
+      {{ partial "semantic.html" . }}
+    {{end}}
 
     {{with  .Site.Params.googleAnalyticsUserID }}
     <script>
