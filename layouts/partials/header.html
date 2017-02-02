@@ -7,7 +7,7 @@
 
     {{ partial "twitter_card.html" . }}
 
-  	<meta property="og:title" content="{{ if ne .URL "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}" />
+  	<meta property="og:title" content="{{ if ne .URL "/" }}{{ .Title }} &middot; {{ end }}{{ .Site.Title }}" />
   	<meta property="og:site_name" content="{{ .Site.Title }}" />
   	<meta property="og:url" content="{{ .Permalink }}" />
 
@@ -15,19 +15,17 @@
     <meta property="og:description" content="{{ .Description }}" />
   	<meta property="og:type" content="article" />
     <meta property="og:image" content="{{ .Site.BaseURL }}{{ .Params.image }}" />
-    <meta property="og:article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}" />
+    <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}" />
 
     {{ range .Params.tags }}
-    <meta property="og:article:tag" content="{{ . }}" />
+    <meta property="article:tag" content="{{ . }}" />
     {{ end }}
     {{ else }}
     <meta property="og:type" content="website" />
     <meta property="og:description" content="{{ .Site.Params.description }}" />
     {{ end }}
 
-    <title>
-      {{ if ne .URL "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}
-    </title>
+    <title>{{ if ne .URL "/" }}{{ .Title }} &middot; {{ end }}{{ .Site.Title }}</title>
 
     {{ if .IsPage }}
     <meta name="description" content="{{ .Description }}" />
