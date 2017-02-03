@@ -43,7 +43,8 @@
                 <span class="icon-flickr" style="color:white;font-size:2em"></span>
                 </a>
             &nbsp;
-            {{end}}            {{ if .Site.Params.twitterName }}
+            {{end}}            
+            {{ if .Site.Params.twitterName }}
                 <a class="bloglogo" href="https://twitter.com/{{ .Site.Params.twitterName }}" target="_blank">
                     <span class="icon-twitter" style="color:white;font-size:2em"></span>
                 </a>
@@ -58,6 +59,12 @@
             {{ if .Site.Params.instagramName }}
                 <a class="bloglogo" href="https://instagram.com/{{ .Site.Params.instagramName }}" target="_blank">
                     <span class="icon-instagram" style="color:white;font-size:2em"></span>
+                </a>
+            &nbsp;
+            {{end}}
+            {{ if .Site.Params.email }}
+                <a class="bloglogo" href="mailto:{{ .Site.Params.email }}" target="_blank">
+                    <span class="icon-mail" style="color:white;font-size:2em"></span>
                 </a>
             &nbsp;
             {{end}}
