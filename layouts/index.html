@@ -38,7 +38,12 @@
                 </a>
             &nbsp;
             {{end}}
-            {{ if .Site.Params.twitterName }}
+            {{ if .Site.Params.flickrName }}
+                <a class="bloglogo" href="https://flickr.com/{{ .Site.Params.flickrName }}" target="_blank">
+                <span class="icon-flickr" style="color:white;font-size:2em"></span>
+                </a>
+            &nbsp;
+            {{end}}            {{ if .Site.Params.twitterName }}
                 <a class="bloglogo" href="https://twitter.com/{{ .Site.Params.twitterName }}" target="_blank">
                     <span class="icon-twitter" style="color:white;font-size:2em"></span>
                 </a>
