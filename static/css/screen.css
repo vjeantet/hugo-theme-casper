@@ -531,6 +531,17 @@ body.nav-opened .site-wrapper {
     text-decoration: none;
 }
 
+.main-header a.bloglogo .icon-linkedin,
+.main-header a.bloglogo .icon-github,
+.main-header a.bloglogo .icon-twitter,
+.main-header a.bloglogo .icon-facebook,
+.main-header a.bloglogo .icon-instagram,
+.main-header a.bloglogo .icon-pinterest,
+.main-header a.bloglogo .icon-google-plus {
+    color: white;
+    font-size: 2em;
+}
+
 .main-nav {
     position: relative;
     padding: 35px 40px;
