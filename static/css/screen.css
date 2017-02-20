@@ -129,6 +129,13 @@ table { border-collapse: collapse; border-spacing: 0; }
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* In order to have correct background when using the monokai pygments style*/
+/* https://discuss.gohugo.io/t/making-hugos-server-side-code-styling-work-with-the-themes-styling-of-pre/5127/3 */
+.highlight pre {
+  background-color: inherit;
+  color: #f8f8f2;
+}
+
 /* Each icon is created by inserting the correct character into the
    content of the :before pseudo element. Like a boss. */
 .icon-github:before {
