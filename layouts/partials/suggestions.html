@@ -1,5 +1,5 @@
 <aside class="read-next">
-  {{ with .Next }}
+  {{ with .NextInSection }}
       <a class="read-next-story" style="{{ if .Params.image }}background-image: url({{ .Site.BaseURL }}{{ .Params.image }}){{ else }}no-cover{{ end }}" href="{{ .RelPermalink }}">
           <section class="post">
               <h2>{{.Title}}</h2>
@@ -7,7 +7,7 @@
           </section>
       </a>
   {{ end }}
-  {{ with .Prev }}
+  {{ with .PrevInSection }}
       <a class="read-next-story prev" style="{{ if .Params.image }}background-image: url({{ .Site.BaseURL }}{{ .Params.image }}){{ else }}no-cover{{ end }}" href="{{ .RelPermalink }}">
           <section class="post">
               <h2>{{.Title}}</h2>

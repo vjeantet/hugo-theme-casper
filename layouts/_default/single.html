@@ -73,4 +73,9 @@
 </article>
 
 </main>
+
+{{if not .Params.hideSuggestions }}
+  {{ partial "suggestions.html" . }}
+{{ end }}
+
 {{ partial "footer.html" . }}
