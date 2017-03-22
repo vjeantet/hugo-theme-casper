@@ -49,7 +49,7 @@
         "height": 1445
     },
     {{end}}
-    "keywords": {{ delimit .Params.tags ", " }},
+    {{ if (.Params.tags) }}"keywords": {{ delimit .Params.tags ", " }},{{end}}
     "description": {{ .Description }},
     "mainEntityOfPage": {
         "@type": "WebPage",
