@@ -10,7 +10,7 @@
   	<meta property="og:title" content="{{ if ne .URL "/" }}{{ .Title }} &middot; {{ end }}{{ .Site.Title }}" />
   	<meta property="og:site_name" content="{{ .Site.Title }}" />
   	<meta property="og:url" content="{{ .Permalink }}" />
-    
+
     {{if .Params.image }}
        <meta property="og:image" content="{{ .Site.BaseURL }}{{.Params.image}}"/>
     {{else}}
@@ -49,7 +49,6 @@
 
     <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL}}css/screen.css" />
     <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL}}css/nav.css" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
 
     {{ range .Site.Params.customCSS }}
     <link rel="stylesheet" href="{{ $.Site.BaseURL }}{{ . }}">
