@@ -26,6 +26,7 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
+<<<<<<< HEAD
             {{ if .Site.Params.linkedinName }}
                 <a class="bloglogo" href="https://www.linkedin.com/in/{{ .Site.Params.linkedinName }}" target="_blank">
                     <span class="icon-linkedin"></span>
@@ -80,6 +81,10 @@
                 </a>
             &nbsp;
             {{end}}
+=======
+
+            {{ partial "social.html" . }}
+>>>>>>> 70f237f3a36571e5b2e0e243e1924f4af2507960
 
             <h1 class="page-title">{{ .Site.Title }}</h1>
             <h2 class="page-description">{{ .Site.Params.description }}</h2>
