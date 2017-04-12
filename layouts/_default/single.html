@@ -3,9 +3,9 @@
 
 {{if .Params.image}}
   {{if or (eq (substr .Params.image 0 7) "http://") (eq (substr .Params.image 0 8) "https://")}}
-  <header class="main-header post-head" style="background-image: url({{.Params.image}})">
+  <header class="main-header post-head" style="background-image: url({{.Params.image }})">
   {{ else }}
-  <header class="main-header post-head" style="background-image: url({{ $baseurl }}{{.Params.image}})">
+  <header class="main-header post-head" style="background-image: url({{.Params.image | relURL}})">
   {{ end }}
   <nav class="main-nav overlay clearfix">
 {{else}}
@@ -14,12 +14,12 @@
 {{end}}
 
   {{ if .Site.Params.logo }}
-      <a class="blog-logo" href="{{.Site.BaseURL}}"><img src="{{.Site.BaseURL}}{{ .Site.Params.logo }}" alt="Home" /></a>
+      <a class="blog-logo" href="{{.Site.BaseURL}}"><img src="{{ .Site.Params.logo | relURL}}" alt="Home" /></a>
   {{end}}
   {{ if .Site.Menus.main }}
       <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
   {{else}}
-      <a class="menu-button icon-feed" href="{{ .Site.BaseURL }}index.xml">&nbsp;&nbsp;Subscribe</a>
+      <a class="menu-button icon-feed" href="{{ "index.xml"| relURL}}" >&nbsp;&nbsp;Subscribe</a>
   {{end}}
   </nav>
 </header>
@@ -59,7 +59,7 @@
 
     {{if .Site.Params.logo}}
     <figure class="author-image">
-        <a class="img" href="{{.Site.BaseURL}}" style="background-image: url({{ $baseurl }}{{.Site.Params.logo}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
+        <a class="img" href="{{.Site.BaseURL}}" style="background-image: url({{.Site.Params.logo | relURL}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
     </figure>
     {{end}}
 

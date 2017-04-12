@@ -12,17 +12,16 @@
   	<meta property="og:url" content="{{ .Permalink }}" />
 
     {{if .Params.image }}
-       <meta property="og:image" content="{{ .Site.BaseURL }}{{.Params.image}}"/>
+       <meta property="og:image" content="{{ .Params.image | relURL}}"/>
     {{else}}
         {{if .Site.Params.cover}}
-            <meta property="og:image" content="{{ .Site.BaseURL }}{{.Site.Params.cover}}"/>
+            <meta property="og:image" content="{{ .Site.Params.cover | relURL}}"/>
         {{end}}
     {{end}}
 
     {{ if .IsPage }}
     <meta property="og:description" content="{{ .Description }}" />
   	<meta property="og:type" content="article" />
-    <meta property="og:image" content="{{ .Site.BaseURL }}{{ .Params.image }}" />
     <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}" />
 
     {{ range .Params.tags }}
@@ -44,21 +43,22 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="shortcut icon" href="{{.Site.BaseURL}}images/favicon.ico">
-	  <link rel="apple-touch-icon" href="{{.Site.BaseURL}}images/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="{{ "images/favicon.ico" | relURL}}">
+	  <link rel="apple-touch-icon" href="{{ "images/apple-touch-icon.png" | relURL}}" />
 
-    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL}}css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL}}css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="{{ "css/screen.css" | relURL}}" />
+    <link rel="stylesheet" type="text/css" href="{{ "css/nav.css" | relURL}}" />
+
 
     {{ range .Site.Params.customCSS }}
-    <link rel="stylesheet" href="{{ $.Site.BaseURL }}{{ . }}">
+    <link rel="stylesheet" href="{{ . | relURL }}">
     {{ end }}
 
     {{ if .Site.Params.RSSLink}}
         <link href="{{.Site.Params.RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
     {{else}}
       {{ if ne .URL "/" }}
-          <link href="{{ .Site.BaseURL }}index.xml" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+          <link href="{{ "index.xml" | relURL}}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
       {{ end }}
       {{if .IsNode}}
         <link href="{{.RSSLink}}" rel="alternate" type="application/rss+xml" title="{{ if ne .URL "/" }}{{ .Title }} &middot; {{ end }}{{ .Site.Title }}" />
