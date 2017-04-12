@@ -35,9 +35,9 @@
     <title>{{ if ne .URL "/" }}{{ .Title }} &middot; {{ end }}{{ .Site.Title }}</title>
 
     {{ if .IsPage }}
-    <meta name="description" content="{{ .Description }}" />
+    <meta name="description" content="{{ .Description | default (substr .Summary 0 160) }}" />
     {{ else }}
-    <meta name="description" content="{{ .Site.Params.description }}" />
+    <meta name="description" content="{{ .Site.Params.metadescription | default .Site.Params.description }}" />
     {{ end }}
 
     <meta name="HandheldFriendly" content="True" />

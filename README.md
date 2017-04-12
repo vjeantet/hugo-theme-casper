@@ -50,7 +50,8 @@ Copyright = "All rights reserved - 2015"
 canonifyurls = true
 
 [params]
-  description = "this is my description"
+  description = "Welcome to my website"
+  metadescription = Uused as 'description' meta tag for both home and index pages. If not set, 'description' will be used instead"
   cover = "images/cover.jpg"
   author = "Valère JEANTET"
   authorlocation = "Paris, France"
