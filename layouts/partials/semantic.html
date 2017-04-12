@@ -1,0 +1,95 @@
+
+    {{ if .IsPage }}
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": {{ .Site.Params.authorname }}{{ with .Site.Params.logo }},
+        "logo": {{ printf "%s%s" $.Site.BaseURL . }}{{end}}
+    },
+    "author": {
+        "@type": "Person",
+        "name": {{ .Site.Params.authorname }},
+        {{ with .Site.Params.logo }}
+        "image": {
+            "@type": "ImageObject",
+            "url": {{ printf "%s%s" $.Site.BaseURL . }},
+            "width": 250,
+            "height": 250
+        }, 
+        {{end}}
+        "url": {{ .Site.Params.authorwebsite }},
+        "sameAs": [
+            {{ $socialLinks := (slice .Site.Params.googlePlus .Site.Params.github .Site.Params.facebook .Site.Params.linkedin .Site.Params.twitter) }}
+            {{ $len := (sub (len $socialLinks) 1)}}
+            {{ range $index, $el := $socialLinks }} {{ if $el }}{{ $el }}{{ if (lt $index $len) }},{{end}}{{end}}
+            {{ end }}
+        ]{{ with .Site.Params.bio }},
+        "description": {{ . }}
+        {{end}}
+    },
+    "headline": {{ .Title }},
+    "name": {{ .Title }},
+    "wordCount": {{ .WordCount }},
+    "timeRequired": "PT{{ .ReadingTime }}M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": {{ .Site.Language.Lang }}
+    },
+    "url": {{ .Permalink }},
+    "datePublished": {{ .Date.Format "2006-01-02T15:04Z" }},
+    "dateModified": {{ .Lastmod.Format "2006-01-02T15:04Z" }},
+    {{ with .Params.image }}
+    "image": {
+        "@type": "ImageObject",
+        "url": {{ printf "%s%s" $.Site.BaseURL . }},
+        "width": 3000,
+        "height": 1445
+    },
+    {{end}}
+    {{ if (.Params.tags) }}"keywords": {{ delimit .Params.tags ", " }},{{end}}
+    "description": {{ .Description }},
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": {{ .Permalink }}
+    }
+}
+    </script>
+    {{ else }}
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Person",
+        "name": {{ .Site.Params.authorname }},
+        {{ with .Site.Params.logo }}
+        "image": {
+            "@type": "ImageObject",
+            "url": {{ printf "%s%s" $.Site.BaseURL . }},
+            "width": 250,
+            "height": 250
+        },
+        {{end}}
+        "url": {{ .Site.Params.authorwebsite }},
+        "sameAs": [
+            {{ $socialLinks := (slice .Site.Params.googlePlus .Site.Params.github .Site.Params.facebook .Site.Params.linkedin .Site.Params.twitter) }}
+            {{ $len := (sub (len $socialLinks) 1)}}
+            {{ range $index, $el := $socialLinks }} {{ if $el }}{{ $el }}{{ if (lt $index $len) }},{{end}}{{end}}
+            {{ end }}
+        ]{{ with .Site.Params.bio }},
+        "description": {{ . }}
+        {{end}}
+    },
+    "url": {{ .Site.BaseURL }},
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": {{ .Site.BaseURL }}
+    },
+    "description": {{ .Site.Params.description }}
+}
+  </script>
+    {{ end }}
+

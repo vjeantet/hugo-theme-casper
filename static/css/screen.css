@@ -104,14 +104,57 @@ table { border-collapse: collapse; border-spacing: 0; }
    1. Icons - Sets up the icon font and respective classes
    ========================================================================== */
 
+/* Import the font files */
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans'), local('OpenSans'), url('../fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+  font-weight: normal; font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('../fonts/Open_Sans/OpenSans-Bold.ttf') format('truetype');
+  font-weight: bold; font-style: normal;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: local('Merriweather Light'), local('Merriweather-Light'), url('../fonts/Merriweather/Merriweather-Light.ttf') format('truetype');
+  font-weight: light; font-style: normal;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: local('Merriweather Light Italic'), local('Merriweather-LightItalic'), url('../fonts/Merriweather/Merriweather-LightItalic.ttf') format('truetype');
+  font-weight: light; font-style: italic;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: local('Merriweather Bold'), local('Merriweather-Bold'), url('../fonts/Merriweather/Merriweather-Bold.ttf') format('truetype');
+  font-weight: bold; font-style: normal;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: local('Merriweather Bold Italic'), local('Merriweather-BoldItalic'), url('../fonts/Merriweather/Merriweather-BoldItalic.ttf') format('truetype');
+  font-weight: bold; font-style: italic;
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: local('Inconsolata Regular'), local('Inconsolata-Regular'), url('../fonts/Inconsolata/Inconsolata-Regular.ttf') format('truetype');
+  font-weight: normal; font-style: normal;
+}
+
 /* Import the font file with the icons in it */
 @font-face {
   font-family: 'genericons';
-  src: url('../fonts/Genericons.eot');
-  src: url('../fonts/Genericons.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/Genericons.woff') format('woff'),
-       url('../fonts/Genericons.ttf') format('truetype'),
-       url('../fonts/Genericons.svg#entypo') format('svg');
+  src: url('../fonts/Genericons/Genericons.eot');
+  src: url('../fonts/Genericons/Genericons.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Genericons/Genericons.woff') format('woff'),
+       url('../fonts/Genericons/Genericons.ttf') format('truetype'),
+       url('../fonts/Genericons/Genericons.svg#entypo') format('svg');
   font-weight: normal; font-style: normal;
 }
 
@@ -127,6 +170,12 @@ table { border-collapse: collapse; border-spacing: 0; }
     text-decoration: none !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* In order to have correct background when using the monokai pygments style*/
+.highlight pre {
+  background-color: inherit;
+  color: #f8f8f2;
 }
 
 /* Each icon is created by inserting the correct character into the
@@ -147,6 +196,12 @@ table { border-collapse: collapse; border-spacing: 0; }
 }
 .icon-twitter:before {
     content: "\f202";
+}
+.icon-flickr:before {
+    content: "\f211";
+}
+.icon-mail:before {
+    content: "\f410";
 }
 .icon-google-plus:before {
     content: "\f206";
@@ -523,6 +578,17 @@ body.nav-opened .site-wrapper {
 
 .main-header a.bloglogo {
     text-decoration: none;
+}
+
+.main-header a.bloglogo .icon-linkedin,
+.main-header a.bloglogo .icon-github,
+.main-header a.bloglogo .icon-twitter,
+.main-header a.bloglogo .icon-facebook,
+.main-header a.bloglogo .icon-instagram,
+.main-header a.bloglogo .icon-pinterest,
+.main-header a.bloglogo .icon-google-plus {
+    color: white;
+    font-size: 2em;
 }
 
 .main-nav {

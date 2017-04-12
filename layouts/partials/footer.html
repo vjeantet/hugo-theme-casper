@@ -5,9 +5,9 @@
         {{end}}
     </footer>
     </div>
-    <script type="text/javascript" src="{{.Site.BaseURL}}js/jquery.js"></script>
-    <script type="text/javascript" src="{{.Site.BaseURL}}js/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="{{.Site.BaseURL}}js/index.js"></script>
+    <script type="text/javascript" src="{{"js/jquery.js" | relURL}}"></script>
+    <script type="text/javascript" src="{{"js/jquery.fitvids.js" | relURL}}"></script>
+    <script type="text/javascript" src="{{"js/index.js" | relURL}}"></script>
     {{ if .Site.Params.customFooterPartial }}
         {{ partial .Site.Params.customFooterPartial . }}
     {{ end }}

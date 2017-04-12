@@ -4,7 +4,7 @@
 {{if or (eq (substr .Site.Params.cover 0 7) "http://") (eq (substr .Site.Params.cover 0 8) "https://")}}
   <header class="main-header" style="background-image: url({{.Site.Params.cover}})">
   {{ else }}
-  <header class="main-header" style="background-image: url({{.Site.BaseURL}}{{.Site.Params.cover}})">
+  <header class="main-header" style="background-image: url({{.Site.Params.cover | relURL}})">
   {{ end }}
 {{else}}
 <header class="main-header no-cover">
@@ -12,7 +12,7 @@
 
     <nav class="main-nav overlay clearfix">
         {{ if .Site.Params.logo }}
-            <a class="blog-logo" href="{{ .Permalink }}"><img src="{{.Site.BaseURL}}{{ .Site.Params.logo }}" alt="Blog Logo" /></a>
+            <a class="blog-logo" href="{{ .Permalink }}"><img src="{{ .Site.Params.logo  | relURL}}" alt="Blog Logo" /></a>
         {{end}}
         {{ if .Site.Menus.main }}
             <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
@@ -28,43 +28,55 @@
         <div class="main-header-content inner">
             {{ if .Site.Params.linkedinName }}
                 <a class="bloglogo" href="https://www.linkedin.com/in/{{ .Site.Params.linkedinName }}" target="_blank">
-                    <span class="icon-linkedin" style="color:white;font-size:2em"></span>
+                    <span class="icon-linkedin"></span>
                 </a>
             &nbsp;
             {{end}}
             {{ if .Site.Params.githubName }}
                 <a class="bloglogo" href="https://github.com/{{ .Site.Params.githubName }}" target="_blank">
-                <span class="icon-github" style="color:white;font-size:2em"></span>
+                    <span class="icon-github"></span>
                 </a>
             &nbsp;
             {{end}}
+            {{ if .Site.Params.flickrName }}
+                <a class="bloglogo" href="https://flickr.com/{{ .Site.Params.flickrName }}" target="_blank">
+                <span class="icon-flickr" style="color:white;font-size:2em"></span>
+                </a>
+            &nbsp;
+            {{end}}            
             {{ if .Site.Params.twitterName }}
                 <a class="bloglogo" href="https://twitter.com/{{ .Site.Params.twitterName }}" target="_blank">
-                    <span class="icon-twitter" style="color:white;font-size:2em"></span>
+                    <span class="icon-twitter"></span>
                 </a>
             &nbsp;
             {{end}}
             {{ if .Site.Params.facebookName }}
                 <a class="bloglogo" href="https://www.facebook.com/{{ .Site.Params.facebookName }}" target="_blank">
-                    <span class="icon-facebook" style="color:white;font-size:2em"></span>
+                    <span class="icon-facebook"></span>
                 </a>
             &nbsp;
             {{end}}
             {{ if .Site.Params.instagramName }}
                 <a class="bloglogo" href="https://instagram.com/{{ .Site.Params.instagramName }}" target="_blank">
-                    <span class="icon-instagram" style="color:white;font-size:2em"></span>
+                    <span class="icon-instagram"></span>
+                </a>
+            &nbsp;
+            {{end}}
+            {{ if .Site.Params.email }}
+                <a class="bloglogo" href="mailto:{{ .Site.Params.email }}" target="_blank">
+                    <span class="icon-mail" style="color:white;font-size:2em"></span>
                 </a>
             &nbsp;
             {{end}}
             {{ if .Site.Params.pinterestName }}
                 <a class="bloglogo" href="https://www.pinterest.com/{{ .Site.Params.pinterestName }}" target="_blank">
-                    <span class="icon-pinterest" style="color:white;font-size:2em"></span>
+                    <span class="icon-pinterest"></span>
                 </a>
             &nbsp;
             {{end}}
             {{ if .Site.Params.googlePlusName }}
                 <a class="bloglogo" href="https://google.com/+{{ .Site.Params.googlePlusName }}" target="_blank">
-                    <span class="icon-google-plus" style="color:white;font-size:2em"></span>
+                    <span class="icon-google-plus"></span>
                 </a>
             &nbsp;
             {{end}}
@@ -79,35 +91,7 @@
 
 <main id="content" class="content" role="main">
 
-    {{ range .Data.Pages }}
-        {{if eq .Type "index" }}
-        <div class="index-content post">
-        {{.Content}}
-        </div>
-        {{end}}
-    {{ end }}
-
-    {{ if not ($.Scratch.Get "paginatedSections") }}
-        {{ if isset .Site.Params "paginatedSections" }}
-            {{ $.Scratch.Set "paginatedSections" .Site.Params.paginatedSections }}
-        {{ else }}
-            {{ $.Scratch.Set "paginatedSections" "post" }}
-        {{ end }}
-    {{ end }}
-
-    {{ $list := where .Data.Pages "Section" "in" ($.Scratch.Get "paginatedSections") }}
-    {{ $list := where $list "Section" "!=" "" }}
-    {{ $paginator := .Paginate ( $list ) }}
-
-    <div class="extra-pagination inner">
-        {{ partial "pagination.html" $paginator }}
-    </div>
-
-    {{ range $index, $page := $paginator.Pages }}
-        {{ partial "li.html" . }}
-    {{ end }}
-
-    {{ partial "pagination.html" $paginator }}
+{{ partial "home-content.html" . }}
 
 </main>
 

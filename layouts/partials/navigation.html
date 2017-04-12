@@ -5,19 +5,19 @@
     </a>
     <ul>
         {{ $currentNode := . }}
-        
-        {{ range .Site.Menus.main }}
+
+        {{ range sort .Site.Menus.main "Weight" "desc"}}
             {{.Pre}}
             <li class="nav-opened{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}} nav-current{{end}}" role="presentation">
             	<a href="{{.URL}}">{{.Name}}</a>
             </li>
         {{end}}
     </ul>
-    
+
     {{ if .Site.Params.RSSLink}}
     <a class="subscribe-button icon-feed" href="{{.Site.Params.RSSLink }}">Subscribe</a> </div>
     {{else}}
-    <a class="subscribe-button icon-feed" href="{{if .IsNode}}{{.RSSLink}}{{else}}{{ .Site.BaseURL }}index.xml{{end}}">Subscribe</a>
+    <a class="subscribe-button icon-feed" href="{{if .IsNode}}{{.RSSLink}}{{else}}{{"index.xml" | relURL}}{{end}}">Subscribe</a>
     {{end}}
 </div>
 <span class="nav-cover"></span>
