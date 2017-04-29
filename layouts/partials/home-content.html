@@ -7,8 +7,8 @@
     {{ end }}
 
     {{ if not ($.Scratch.Get "paginatedSections") }}
-        {{ if isset .Site.Params "paginatedSections" }}
-            {{ $.Scratch.Set "paginatedSections" .Site.Params.paginatedSections }}
+        {{ if isset .Site.Params "paginatedsections" }}
+            {{ $.Scratch.Set "paginatedSections" .Site.Params.paginatedsections }}
         {{ else }}
             {{ $.Scratch.Set "paginatedSections" "post" }}
         {{ end }}
