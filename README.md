@@ -52,7 +52,7 @@ canonifyurls = true
 
 [params]
   description = "Welcome to my website"
-  metadescription = Uused as 'description' meta tag for both home and index pages. If not set, 'description' will be used instead"
+  metadescription = "Used as 'description' meta tag for both home and index pages. If not set, 'description' will be used instead"
   cover = "images/cover.jpg"
   author = "Valère JEANTET"
   authorlocation = "Paris, France"
