@@ -54,8 +54,13 @@
     {{ end }}
 
     {{ if .Site.Params.hjsStyle }}
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/{{ .Site.Params.hjsStyle }}.min.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/{{ .Site.Params.hjsStyle }}.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        {{ if or .Site.Params.hjsExtraLanguages .Params.hjsExtraLanguages }}
+          {{ range $index, $language := (union .Site.Params.hjsExtraLanguages .Params.hjsExtraLanguages) }}
+            <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/{{ $language }}.min.js"></script>
+          {{ end }}
+        {{ end }}
         <script>hljs.initHighlightingOnLoad();</script>
     {{end}}
 
