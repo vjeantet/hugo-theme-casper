@@ -4,40 +4,39 @@
         <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
     </header>
     <section class="post-excerpt">
-        {{if isset .Params "excerpt" }}
-            {{ if .Params.excerpt }}
-                <p>{{ .Params.excerpt }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
-            {{end}}
+        {{if .Params.excerpt }}
+            <p>{{ .Params.excerpt }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
         {{else}}
             <p>{{ .Summary }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
         {{end}}
     </section>
     <footer class="post-meta">
-        {{$author:= .Site.Params.author}}
+        
+
         {{if .Params.author }}
-            {{$author:= .Params.author}}
-            {{if isset .Site.Data.authors $author}}
+            {{if isset .Site.Data.authors .Params.author}}
                 {{$author := index .Site.Data.authors .Params.author }}
-                {{ if isset $author "thumbnail" }}
+                {{ if  $author.thumbnail }}
                     <img class="author-thumb" src="{{ $author.thumbnail| relURL  }}" alt="Author image" nopin="nopin" />
                 {{else if .Site.Params.logo }}
                     <img class="author-thumb" src="{{.Site.Params.logo| relURL }}" alt="Author image" nopin="nopin" />
                 {{end}}
-                {{ if isset $author "name" }}
+                {{ if $author.name }}
                     {{$author.name}}
                 {{else if .Site.Params.author}}
                     {{.Site.Params.author}}
                 {{end}}
             {{else}}
-                {{$author}}
+                {{.Params.author}}
             {{end}}
-        {{else}}
-            {{ if isset $author "thumbnail" }}
+        {{else if .Site.Params.author }}
+            {{$author := index .Site.Data.authors .Site.Params.author }}
+            {{ if $author.thumbnail }}
                 <img class="author-thumb" src="{{ $author.thumbnail | relURL }}" alt="Author image" nopin="nopin" />
             {{else if .Site.Params.logo }}
                 <img class="author-thumb" src="{{.Site.Params.logo | relURL }}" alt="Author image" nopin="nopin" />
             {{end}}
-            {{ if isset $author "name" }}
+            {{ if $author.name }}
                 {{$author.name}}
             {{else if .Site.Params.author}}
                 {{.Site.Params.author}}

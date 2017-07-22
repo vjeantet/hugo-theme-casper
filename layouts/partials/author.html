@@ -1,4 +1,5 @@
 {{ if not .Params.noauthor }}
+{{ if or .Params.author .Site.Params.author}}
 {{$author := index .Site.Data.authors (or .Params.author .Site.Params.author)}}
 {{$authorname := or $author.name .Site.Params.author }}
 {{$authorbio := or $author.bio .Site.Params.bio }}
@@ -16,4 +17,5 @@
     {{with $authorwebsite}}<span class="author-link icon-link"><a href="{{.}}">{{.}}</a></span>{{end}}
   </div>
 </section>
+{{end}}
 {{end}}
