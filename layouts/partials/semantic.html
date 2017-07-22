@@ -26,7 +26,7 @@
             {{ $len := (sub (len $socialLinks) 1)}}
             {{ range $index, $el := $socialLinks }} {{ if $el }}{{ $el }}{{ if (lt $index $len) }},{{end}}{{end}}
             {{ end }}
-        ]{{ with .Site.Params.bio }},
+        ]{{ with .Site.Params.authorbio }},
         "description": {{ . }}
         {{end}}
     },
@@ -79,7 +79,7 @@
             {{ $len := (sub (len $socialLinks) 1)}}
             {{ range $index, $el := $socialLinks }} {{ if $el }}{{ $el }}{{ if (lt $index $len) }},{{end}}{{end}}
             {{ end }}
-        ]{{ with .Site.Params.bio }},
+        ]{{ with .Site.Params.authorbio }},
         "description": {{ . }}
         {{end}}
     },

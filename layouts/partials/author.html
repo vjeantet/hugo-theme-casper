@@ -2,7 +2,7 @@
 {{ if or .Params.author .Site.Params.author}}
 {{$author := index .Site.Data.authors (or .Params.author .Site.Params.author)}}
 {{$authorname := or $author.name .Site.Params.author }}
-{{$authorbio := or $author.bio .Site.Params.bio }}
+{{$authorbio := or $author.bio .Site.Params.authorbio }}
 {{$authorlocation := or $author.location .Site.Params.authorlocation }}
 {{$authorwebsite := or $author.website .Site.Params.authorwebsite }}
 <section class="author">
