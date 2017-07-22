@@ -5,7 +5,7 @@ description = "Casper theme from Ghost Foundation"
 homepage = "http://vjeantet.fr/"
 tags = ["blog"]
 features = ["disqus", "google analytics","share"]
-min_version=0.14
+min_version=0.25
 
 [author]
   name = "Valere JEANTET"
