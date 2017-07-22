@@ -1,10 +1,17 @@
 {{ if not .Params.noauthor }}
 {{ if or .Params.author .Site.Params.author}}
-{{$author := index .Site.Data.authors (or .Params.author .Site.Params.author)}}
-{{$authorname := or $author.name .Site.Params.author }}
-{{$authorbio := or $author.bio .Site.Params.authorbio }}
-{{$authorlocation := or $author.location .Site.Params.authorlocation }}
-{{$authorwebsite := or $author.website .Site.Params.authorwebsite }}
+{{$authorname := or .Params.author .Site.Params.author }}
+{{$authorbio := or .Params.authorbio .Site.Params.authorbio }}
+{{$authorlocation := or .Params.authorlocation .Site.Params.authorlocation }}
+{{$authorwebsite := or .Params.authorwebsite .Site.Params.authorwebsite }}
+{{$authoravatar := or .Params.authoravatar .Site.Params.logo }}
+
+{{with $authoravatar}}
+<figure class="author-image">
+    <a class="img" href="{{$.Site.BaseURL}}" style="background-image: url({{. | relURL}})"><span class="hidden">{{$authorname}}'s Picture</span></a>
+</figure>
+{{end}}
+
 <section class="author">
   <h4><a href="{{.Site.BaseURL}}">{{$authorname}}</a></h4>
   {{if $authorbio}}

@@ -81,32 +81,24 @@ canonifyurls = true
 
 Example : [config.toml](https://github.com/vjeantet/vjeantet.fr/blob/master/config.toml)
 
-## Multiple authors configuration
+## Overide author information per page
 
-In addition to providing data for a single author as shown in the example above, multiple authors
-can be configured via data/authors/\*.(yml, toml, json) entries. If the key provided in
-.Site.Params.author matched a data/authors/\* entry, it will be used as the default. Overrides
-per page can be done by a simple author = other_author_key entry in the front matter. For those
-pages where you want to omit the author block completely, a .Params.noauthor entry is also
+In addition to providing data for a single author as shown in the example above, author can be overided per page. If a author key  in page's frontmatter exists it will be used instead of the default one. 
+Overrides per page can be done by adding author* = "value entry in the front matter. 
+For those pages where you want to omit the author block completely, a .Params.noauthor entry is also
 available.
 
-Example author definition file:
-
-``` yml
-name: John Doe
-bio: The most uninteresting man in the world.
-location: Normal, IL
-website: http://example.com
-thumbnail: images/john.png
-
-```
 
 Example override author per page file:
 ``` toml
 +++
-author = ""
 date = "2014-07-11T10:54:24+02:00"
 title = ""
+author = "NickName"
+authoravatar = "https://cdn4.iconfinder.com/data/icons/gray-user-management/512/rounded-512.png"
+authorbio = "IT software and Security Engineer, Open source enthusiast."
+authorlocation = "Paris, France"
+authorwebsite = "http://vjeantet.fr"
 ...
 +++
 
