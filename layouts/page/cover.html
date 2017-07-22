@@ -1,5 +1,4 @@
 {{ partial "header.html" . }}
-{{ $baseurl := .Site.BaseURL }}
 
 
 {{if .Params.image}}
@@ -61,7 +60,7 @@
           </time>
         {{end}}
          {{ range .Params.tags }}
-          <span class="post-tag small"><a href="{{ $baseurl }}tags/{{ . | urlize }}/">#{{ . }}</a></span>
+          <span class="post-tag small"><a href="{{$.Site.BaseURL}}/tags/{{ . | urlize }}/">#{{ . }}</a></span>
          {{ end }}
         </section>
     </header>

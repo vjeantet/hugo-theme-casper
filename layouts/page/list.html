@@ -1,5 +1,4 @@
 {{ partial "header.html" . }}
-{{ $baseurl := .Site.BaseURL }}
 
 {{if .Params.cover}}
   {{if or (eq (substr .Params.cover 0 7) "http://") (eq (substr .Params.cover 0 8) "https://")}}
