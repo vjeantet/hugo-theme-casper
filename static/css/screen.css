@@ -184,6 +184,10 @@ table { border-collapse: collapse; border-spacing: 0; }
     content: "\f200";
 }
 
+.icon-codepen:before {
+    content: "\f216";
+}
+
 .icon-hugo:before{
     content:"\f216";
 }
@@ -581,6 +585,7 @@ body.nav-opened .site-wrapper {
 }
 
 .main-header a.bloglogo .icon-linkedin,
+.main-header a.bloglogo .icon-codepen,
 .main-header a.bloglogo .icon-github,
 .main-header a.bloglogo .icon-twitter,
 .main-header a.bloglogo .icon-facebook,

@@ -12,6 +12,13 @@
 &nbsp;
 {{end}}
 
+{{ if .Site.Params.codepenName }}
+    <a class="bloglogo" href="https://codepen.io/{{ .Site.Params.codepenName }}" target="_blank">
+    <span class="icon-codepen" style="color:white;font-size:2em"></span>
+    </a>
+&nbsp;
+{{end}}
+
 {{ if .Site.Params.flickrName }}
     <a class="bloglogo" href="https://flickr.com/{{ .Site.Params.flickrName }}" target="_blank">
     <span class="icon-flickr" style="color:white;font-size:2em"></span>
