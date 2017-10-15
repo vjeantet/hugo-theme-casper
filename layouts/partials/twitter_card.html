@@ -8,7 +8,9 @@
     {{ end }}
 {{ else }}
     <meta name="twitter:card" content="summary"/>
+    {{ with .Site.Params.cover }}
     <meta name="twitter:image" content="{{ .Site.Params.cover | relURL }}"/>
+    {{ end }}
 {{ end }}
 
 <!-- Twitter Card data -->
