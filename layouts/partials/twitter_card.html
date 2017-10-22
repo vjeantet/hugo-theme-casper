@@ -9,7 +9,7 @@
 {{ else }}
     <meta name="twitter:card" content="summary"/>
     {{ with .Site.Params.cover }}
-    <meta name="twitter:image" content="{{ .Site.Params.cover | relURL }}"/>
+    <meta name="twitter:image" content="{{ . | relURL }}"/>
     {{ end }}
 {{ end }}
 
