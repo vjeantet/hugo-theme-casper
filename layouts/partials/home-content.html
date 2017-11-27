@@ -10,7 +10,7 @@
         {{ if .Site.Params.paginatedsections }}
             {{ $.Scratch.Set "paginatedSections" .Site.Params.paginatedsections }}
         {{ else }}
-            {{ $.Scratch.Set "paginatedSections" "post" }}
+            {{ $.Scratch.Set "paginatedSections" "posts" }}
         {{ end }}
     {{ end }}
 
