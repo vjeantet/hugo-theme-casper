@@ -1,6 +1,5 @@
 {{ partial "header.html" . }}
 
-
 {{if .Params.image}}
   {{if or (eq (substr .Params.image 0 7) "http://") (eq (substr .Params.image 0 8) "https://")}}
   <header class="main-header post-head" style="background-image: url({{.Params.image}})">
@@ -27,18 +26,11 @@
       {{end}}
     </nav>
 
-
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">{{.Title}}</h1>
-            <h2 class="page-description">
-                {{if .Params.description}}
-                    {{.Params.description}}
-                {{end}}
-            </h2>
+            <h1 class="page-title">Archives</h1>
         </div>
     </div>
-
 
 
 </header>
@@ -47,69 +39,11 @@
 
 <main class="content" role="main">
 
-
-
-
   <article class="post {{ .Section }}">
-    <header class="post-header">
 
-        <section class="post-meta">
-        {{ if eq .Section "post"}}
-          <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05+08:00" | safeHTML }}">
-            {{ .Date.Format "Jan 2, 2006" }}
-          </time>
-        {{end}}
-         {{ range .Params.tags }}
-          <span class="post-tag small"><a href="{{$.Site.BaseURL}}/tags/{{ . | urlize }}/">#{{ . }}</a></span>
-         {{ end }}
-        </section>
-    </header>
-
-    <section class="post-content">
-
-
-{{ .Content }}
-
-
-
-<nav class="navpage">
-
-{{ $currentNode := . }}
-{{ range .Site.Menus.main }}
-{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
-      {{ range .Children }}
-      <ul>
-      <li><a href="{{.URL}}">{{.Name}}</a>
-      {{ if .HasChildren }}
-        <ul>
-        {{ range .Children }}
-          <li><a href="{{.URL}}">{{.Name}}</a>
-          {{ if .HasChildren }}
-            <ul>
-            {{ range .Children }}
-            <li><a href="{{.URL}}">{{ .Name }}</a></li>
-            {{ end }}
-            </ul>
-          {{ end }}
-        {{ end }}
-        </ul>
-      {{ end }}
-      </li>
-      </ul>
-      {{ end }}
-
-
-{{end}}
-{{end}}
-
-</nav>
-
-
-    </section>
-
+    {{ partial "archive-post.html" (where .Site.RegularPages "Type" "post") }}
 
   <footer class="post-footer">
-
 
     {{if .Site.Params.logo}}
     <figure class="author-image">
@@ -121,10 +55,11 @@
 
     {{ partial "share.html" . }}
 
-    {{ partial "disqus.html" . }}
-
   </footer>
-</article>
+  </article>
 
 </main>
+
+{{ partial "suggestions.html" . }}
+
 {{ partial "footer.html" . }}

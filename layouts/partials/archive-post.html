@@ -1,0 +1,18 @@
+<section>
+  {{ range .GroupByDate "2006" }}
+    {{ $year := .Key }}
+    <div data-date="{{ $year }}">
+      <h4>{{ $year }}年</h4><br />
+      {{ range .Pages.GroupByDate "01-01" }}
+        <ul data-date="{{ $year }}{{ range first 1 (split .Key "-") }}{{ . }}{{ end }}">
+          <h5>{{ range last 1 (split .Key "-") }}{{ printf "%s" . }}{{ end }}月</h5>
+          {{ range .Pages }}
+            <li data-date="{{ dateFormat "20060102" .Date }}">
+              <a href="{{ .Permalink }}">{{ .Title }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </div><hr />
+  {{ end }}
+</section>
