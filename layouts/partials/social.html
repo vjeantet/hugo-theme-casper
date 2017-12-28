@@ -74,3 +74,10 @@
     </a>
 &nbsp;
 {{end}}
+
+{{ if .Site.Params.keybaseName }}
+    <a class="bloglogo" href="https://keybase.io/{{ .Site.Params.keybaseName }}" target="_blank">
+        <img src="images/keybase.svg" height="40" width="40">
+    </a>
+&nbsp;
+{{end}}
