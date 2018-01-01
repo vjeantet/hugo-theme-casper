@@ -27,9 +27,9 @@
 {{end}}
 
 {{ if .Site.Params.stackoverflowId }}
-<a class="bloglogo" href="https://stackoverflow.com/users/{{ .Site.Params.stackoverflowId }}" target="_blank">
-<img src="https://cdn.sstatic.net/Sites/stackoverflow/company/img/logos/so/so-icon.svg" height="40" width="40">
-</a>
+    <a class="bloglogo" href="https://stackoverflow.com/users/{{ .Site.Params.stackoverflowId }}" target="_blank">
+        <img src="images/stackoverflow.svg" height="40" width="40">
+    </a>
 &nbsp;
 {{end}}
 
@@ -71,6 +71,13 @@
 {{ if .Site.Params.googlePlusName }}
     <a class="bloglogo" href="https://google.com/+{{ .Site.Params.googlePlusName }}" target="_blank">
         <span class="icon-google-plus" style="color:white;font-size:2em"></span>
+    </a>
+&nbsp;
+{{end}}
+
+{{ if .Site.Params.keybaseName }}
+    <a class="bloglogo" href="https://keybase.io/{{ .Site.Params.keybaseName }}" target="_blank">
+        <img src="images/keybase.svg" height="40" width="40">
     </a>
 &nbsp;
 {{end}}
