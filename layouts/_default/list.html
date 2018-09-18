@@ -1,20 +1,19 @@
 {{ partial "header.html" . }}
 
-
 {{if .Params.cover}}
-	{{if or (eq (substr .Params.cover 0 7) "http://") (eq (substr .Params.cover 0 8) "https://")}}
+  {{if or (eq (substr .Params.cover 0 7) "http://") (eq (substr .Params.cover 0 8) "https://")}}
   <header class="main-header tag-head" style="background-image: url({{.Params.cover}})">
   {{ else }}
   <header class="main-header tag-head" style="background-image: url({{.Params.cover | relURL}})">
   {{ end }}
 {{else if .Site.Params.cover}}
-	 {{if or (eq (substr .Site.Params.cover 0 7) "http://") (eq (substr .Site.Params.cover 0 8) "https://")}}
+  {{if or (eq (substr .Site.Params.cover 0 7) "http://") (eq (substr .Site.Params.cover 0 8) "https://")}}
   <header class="main-header tag-head" style="background-image: url({{.Site.Params.cover}})">
   {{ else }}
   <header class="main-header tag-head" style="background-image: url({{.Site.Params.cover  | relURL}})">
   {{ end }}
 {{else}}
-	<header class="main-header tag-head no-cover">
+  <header class="main-header tag-head no-cover">
 {{end}}
     <nav class="main-nav overlay clearfix">
       {{ if .Site.Params.logo }}
@@ -55,7 +54,5 @@
 
 	{{ partial "pagination.html" $paginator }}
 </main>
-
-
 
 {{ partial "footer.html" . }}

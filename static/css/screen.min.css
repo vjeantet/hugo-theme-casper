@@ -64,7 +64,7 @@ table{border-collapse:collapse;border-spacing:0}
 .icon-location:before{content:"\f417"}
 .icon-link:before{content:"\f442"}
 html{height:100%;max-height:100%;font-size:62.5%;-webkit-tap-highlight-color:transparent}
-body{height:100%;max-height:100%;font-family:Merriweather,serif;letter-spacing:.01rem;font-size:1.8rem;line-height:1.75em;color:#3A4145;-webkit-font-feature-settings:'kern' 1;-moz-font-feature-settings:'kern' 1;-o-font-feature-settings:'kern' 1;text-rendering:geometricPrecision}
+body{height:100%;max-height:100%;font-family:-apple-system,"Merriweather","Noto Sans","Helvetica Neue",Helvetica,"Nimbus Sans L",Arial,"Liberation Sans","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Source Han Sans CN","Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",serif;letter-spacing:.01rem;font-size:1.8rem;line-height:1.75em;color:#3A4145;-webkit-font-feature-settings:'kern' 1;-moz-font-feature-settings:'kern' 1;-o-font-feature-settings:'kern' 1;text-rendering:geometricPrecision}
 ::-moz-selection{background:#D6EDFF}
 ::selection{background:#D6EDFF}
 h1,h2,h3,h4,h5,h6{-webkit-font-feature-settings:'dlig' 1,'liga' 1,'lnum' 1,'kern' 1;-moz-font-feature-settings:'dlig' 1,'liga' 1,'lnum' 1,'kern' 1;-o-font-feature-settings:'dlig' 1,'liga' 1,'lnum' 1,'kern' 1;color:#2E2E2E;line-height:1.15em;margin:0 0 .4em 0;font-family:"Open Sans",sans-serif;text-rendering:geometricPrecision}

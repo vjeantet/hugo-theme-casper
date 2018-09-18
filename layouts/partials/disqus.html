@@ -1,19 +1,19 @@
 {{ if ne .Params.comments false}}
-{{ if .Site.DisqusShortname }}
-<div id="hypercomments_widget"></div>
-<script type="text/javascript">
-	_hcwp = window._hcwp || [];
-	_hcwp.push({widget:"Stream", widget_id: {{ .Site.DisqusShortname }}});
+<div class="comment"></div>
 
-	(function() {
-	if("HC_LOAD_INIT" in window)return;
-	HC_LOAD_INIT = true;
-	var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
-	var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
-	hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/{{ .Site.DisqusShortname }}/"+lang+"/widget.js";
-	var s = document.getElementsByTagName("script")[0];
-	s.parentNode.insertBefore(hcc, s.nextSibling);
-	})();
+<!--载入js，在</body>之前插入即可-->
+<script src="//cdn1.lncld.net/static/js/3.10.0/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//cdn.jsdelivr.net/gh/panjunwen/Valine@1.1.7/dist/Valine.min.js" integrity="sha256-tYk+LQKWYwNcEa84mjMJeh3GBDeDHA+CxRrTq6M1xEY=" crossorigin="anonymous"></script>
+<script>
+    new Valine({
+        av: AV, 
+        el: '.comment',
+        emoticon_url: 'https://www.heartnn.com/smiles',
+        emoticon_list: ["arrow.gif","biggrin.gif","confused.gif","cool.gif","cry.gif","eek.gif","evil.gif","exclaim.gif","idea.gif","lol.gif","mad.gif","mrgreen.gif","neutral.gif","question.gif","razz.gif","redface.gif","rolleyes.gif","sad.gif","smile.gif","surprised.gif","twisted.gif","wink.gif"],
+        app_id: 'WmHH4997UnyEsd9H1aACe6rP-gzGzoHsz',
+        app_key: '44mTerRFfQEcXcJ8kvvkeTp0',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    });
 </script>
-{{ end }}
 {{ end }}

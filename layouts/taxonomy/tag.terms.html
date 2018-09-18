@@ -65,16 +65,16 @@
 <hr />
 	            <section class="boxes">
               {{ range .Data.Terms.Alphabetical }}
-                <div id="{{ .Name | urlize }}-list" class="archive box" data-tag="{{ .Name | lower }}">
+                <div id="{{ .Name | urlize }}-list" data-tag="{{ .Name | lower }}">
                   <h4 class="archive-title">
-                    <a class="link-unstyled" href="{{ .Name | urlize }}">
+                    <a href="{{ .Name | urlize }}">
                       {{ .Name }} ({{ .Pages | len }})
                     </a>
                   </h4>
-                  <ul class="archive-posts">
+                  <ul>
                     {{ range .Pages.ByDate }}
-                      <li class="archive-post">
-                        <span class="archive-post-date">{{ partial "internal/date" . }} - </span><a class="archive-post-title" href="{{ .Permalink }}">
+                      <li>
+                        <span style="font-family:mono;">{{ partial "internal/date" . }} | </span><a href="{{ .Permalink }}">
                           {{ .Title }}
                         </a>
                       </li>
