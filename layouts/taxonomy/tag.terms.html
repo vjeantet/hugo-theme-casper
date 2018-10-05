@@ -1,0 +1,106 @@
+{{ partial "header.html" . }}
+
+{{if .Params.image}}
+  {{if or (eq (substr .Params.image 0 7) "http://") (eq (substr .Params.image 0 8) "https://")}}
+  <header class="main-header post-head" style="background-image: url({{.Params.image}})">
+  {{ else }}
+  <header class="main-header post-head" style="background-image: url({{.Params.image | relURL}})">
+  {{ end }}
+  <nav class="main-nav overlay clearfix">
+{{else}}
+<header class="main-header post-head no-cover">
+    <nav class="main-nav overlay clearfix">
+{{end}}
+
+      {{ if .Site.Params.logo }}
+        <a class="blog-logo" href="{{.Site.BaseURL}}"><img src="{{ .Site.Params.logo | relURL }}" alt="Home" /></a>
+      {{end}}
+      {{ if .Site.Menus.main }}
+          <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+      {{else}}
+        {{ if .Site.Params.RSSLink}}
+          <a class="menu-button icon-feed" href="{{.Site.Params.RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+        {{else}}
+          <a class="menu-button icon-feed" href="{{ .RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+        {{end}}
+      {{end}}
+    </nav>
+
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">Tags</h1>
+        </div>
+    </div>
+
+
+</header>
+
+<main class="content" role="main">
+
+  <article class="post {{ .Section }}">
+
+	{{ if not (eq (len $.Site.Taxonomies.tags) 0) }}
+		{{ $fontUnit := "rem" }}
+		{{ $largestFontSize := 2.6 }}
+		{{ $largestFontSize := 3.2 }}
+		{{ $smallestFontSize := 1.6 }}
+		{{ $fontSpread := sub $largestFontSize $smallestFontSize }}
+		{{ $max := add (len (index $.Site.Taxonomies.tags.ByCount 0).Pages) 1 }}
+		{{ $min := len (index $.Site.Taxonomies.tags.ByCount.Reverse 0).Pages }}
+		{{ $spread := sub $max $min }}
+		{{ $fontStep := div $fontSpread $spread }}
+
+		<div id="tag-cloud">
+			{{ range $name, $taxonomy := $.Site.Taxonomies.tags }}
+				{{ $currentTagCount := len $taxonomy.Pages }}
+				{{ $currentFontSize := (add $smallestFontSize (mul (sub $currentTagCount $min) $fontStep) ) }}
+				{{ $count := len $taxonomy.Pages }}
+				{{ $weigth := div (sub (math.Log $count) (math.Log $min)) (sub (math.Log $max) (math.Log $min)) }}
+				{{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weigth) ) }}
+				<!--Current font size: {{$currentFontSize}}-->
+				<a href="#{{ $name | urlize }}-list" style="font-size:{{$currentFontSize}}{{$fontUnit}}">{{ $name }}</a>
+			{{ end }}
+		</div>
+	{{ end }}
+<hr />
+	            <section class="boxes">
+              {{ range .Data.Terms.Alphabetical }}
+                <div id="{{ .Name | urlize }}-list" data-tag="{{ .Name | lower }}">
+                  <h4 class="archive-title">
+                    <a href="{{ .Name | urlize }}">
+                      {{ .Name }} ({{ .Pages | len }})
+                    </a>
+                  </h4>
+                  <ul>
+                    {{ range .Pages.ByDate }}
+                      <li>
+                        <span style="font-family:mono;">{{ partial "internal/date" . }} | </span><a href="{{ .Permalink }}">
+                          {{ .Title }}
+                        </a>
+                      </li>
+                    {{ end }}
+                  </ul>
+                </div>
+              {{ end }}
+           </section>
+
+  <footer class="post-footer">
+
+    {{if .Site.Params.logo}}
+    <figure class="author-image">
+        <a class="img" href="{{.Site.BaseURL}}" style="background-image: url({{.Site.Params.logo | relURL}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
+    </figure>
+    {{end}}
+
+    {{ partial "author.html" . }}
+
+    {{ partial "share.html" . }}
+
+  </footer>
+  </article>
+
+</main>
+
+{{ partial "suggestions.html" . }}
+
+{{ partial "footer.html" . }}

@@ -22,7 +22,7 @@
     {{ if .IsPage }}
     <meta property="og:description" content="{{ .Description }}" />
   	<meta property="og:type" content="article" />
-    <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}" />
+    <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05+08:00" | safeHTML }}" />
 
     {{ range .Params.tags }}
     <meta property="article:tag" content="{{ . }}" />
@@ -46,19 +46,21 @@
     <link rel="shortcut icon" href="{{ "images/favicon.ico" | relURL}}">
 	  <link rel="apple-touch-icon" href="{{ "images/apple-touch-icon.png" | relURL}}" />
 
-    <link rel="stylesheet" type="text/css" href="{{ "css/screen.css" | relURL}}" />
-    <link rel="stylesheet" type="text/css" href="{{ "css/nav.css" | relURL}}" />
+    <link rel="stylesheet" href="{{ "css/screen.min.css" | relURL}}" />
+    <link rel="stylesheet" href="{{ "css/nav.min.css" | relURL}}" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css" integrity="sha256-oC/Q8nqWSlp1bki3Ht9gRCWaew5n6/HNk10HT4aEX4w=" crossorigin="anonymous" />
+
 
     {{ range .Site.Params.customCSS }}
     <link rel="stylesheet" href="{{ . | relURL }}">
     {{ end }}
 
     {{ if .Site.Params.hjsStyle }}
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/{{ .Site.Params.hjsStyle }}.min.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/{{ .Site.Params.hjsStyle }}.min.css">
+        <script src="//cdn.jsdelivr.net/npm/highlight.js@9.12.0/lib/highlight.min.js"></script>
         {{ if or .Site.Params.hjsExtraLanguages .Params.hjsExtraLanguages }}
           {{ range $index, $language := (union .Site.Params.hjsExtraLanguages .Params.hjsExtraLanguages) }}
-            <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/{{ $language }}.min.js"></script>
+            <script src="//cdn.jsdelivr.net/npm/highlight.js@9.12.0/lib/languages/{{ $language }}.min.js"></script>
           {{ end }}
         {{ end }}
         <script>hljs.initHighlightingOnLoad();</script>

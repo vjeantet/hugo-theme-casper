@@ -250,7 +250,7 @@ html {
 body {
     height: 100%;
     max-height: 100%;
-    font-family: "Merriweather", serif;
+    font-family: -apple-system, "Merriweather", "Noto Sans", "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", serif;
     letter-spacing: 0.01rem;
     font-size: 1.8rem;
     line-height: 1.75em;
@@ -1040,6 +1040,22 @@ body:not(.post-template) .post-title {
     line-height: 1.7em;
 }
 
+.post-excerpt img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    padding: 0.6em 0;
+    /* Centers an image by (1) pushing its left edge to the
+       center of its container and (2) shifting the entire image
+       in the opposite direction by half its own width.
+       Works for images that are larger than their containers. */
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%); /* for Safari and iOS */
+    -ms-transform: translateX(-50%); /* for IE9 */
+    transform: translateX(-50%);
+}
+
 .read-more {
     text-decoration: none;
 }
@@ -1242,7 +1258,7 @@ body:not(.post-template) .post-title {
     position: absolute;
     top: 6rem;
     right: 0;
-    width: 180px;
+    width: 220px;
 }
 
 .post-footer .share a {
@@ -1781,6 +1797,13 @@ body:not(.post-template) .post-title {
 
     .post-excerpt p {
         font-size: 0.85em;
+    }
+
+    .post-excerpt img {
+        padding: 0;
+        width: calc(100% + 32px); /* expand with to image + margins */
+        min-width: 0;
+        max-width: 100%; /* fallback when calc doesn't work */
     }
 
     .page-description {

@@ -1,0 +1,163 @@
+{{ if $.Site.Params.hierarchicalCategories }}
+  {{ $.Scratch.Set "max-level" 0 }}
+  {{ range where $.Site.RegularPages "Type" "post" }}
+    {{ $page := . }}
+    {{ if .Params.categories }}
+      {{ $categories := (apply .Params.categories "urlize" ".") }}
+      {{ range $index,$value := $categories }}
+        {{ if gt $index ($.Scratch.Get "max-level") }}
+          {{ $.Scratch.Set "max-level" $index }}
+        {{ end }}
+        {{ $path := (printf "%s" (delimit (first (add $index 1) $categories) " ")) }}
+        {{ $name := (printf "%s-%d" ($value | urlize) $index) }}
+        {{ $level := (printf "categories-level-%d" $index) }}
+        {{ if $.Scratch.Get $name }}
+          {{ $category := ($.Scratch.Get $name) }}
+          {{ if and (not (in $category.parent ($.Scratch.Get "parent"))) (gt $index 0) }}
+            {{ $node := (dict "path" $path "name" $category.name "parents" (split (printf "%s,%s" (delimit $category.parents ",") ($.Scratch.Get "parent")) ",")) }}
+            {{ $.Scratch.Set $path $node }}
+            {{ $.Scratch.SetInMap $level $path $node }}
+          {{ end }}
+        {{ else }}
+          {{ $node := (dict "path" $path "name" $value "parents" (split ($.Scratch.Get "parent") ",")) }}
+          {{ $.Scratch.Set $name $node }}
+          {{ $.Scratch.SetInMap $level $path $node }}
+        {{ end }}
+        {{ $.Scratch.SetInMap (printf "%s" (delimit (first (add $index 1) $categories) "/")) $page.UniqueID $page }}
+        {{ $.Scratch.Set "parent" $path }}
+      {{ end }}
+      {{ $.Scratch.Set "parent" nil }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ partial "header.html" . }}
+
+{{if .Params.image}}
+  {{if or (eq (substr .Params.image 0 7) "http://") (eq (substr .Params.image 0 8) "https://")}}
+  <header class="main-header post-head" style="background-image: url({{.Params.image}})">
+  {{ else }}
+  <header class="main-header post-head" style="background-image: url({{.Params.image | relURL}})">
+  {{ end }}
+  <nav class="main-nav overlay clearfix">
+{{else}}
+<header class="main-header post-head no-cover">
+    <nav class="main-nav overlay clearfix">
+{{end}}
+
+      {{ if .Site.Params.logo }}
+        <a class="blog-logo" href="{{.Site.BaseURL}}"><img src="{{ .Site.Params.logo | relURL }}" alt="Home" /></a>
+      {{end}}
+      {{ if .Site.Menus.main }}
+          <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+      {{else}}
+        {{ if .Site.Params.RSSLink}}
+          <a class="menu-button icon-feed" href="{{.Site.Params.RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+        {{else}}
+          <a class="menu-button icon-feed" href="{{ .RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+        {{end}}
+      {{end}}
+    </nav>
+
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">Categories</h1>
+        </div>
+    </div>
+
+
+</header>
+
+
+
+<main class="content" role="main">
+
+  <article class="post {{ .Section }}">
+
+          <section>
+            {{ if $.Site.Params.hierarchicalCategories }}
+              {{ range $.Scratch.GetSortedMapValues "categories-level-0" }}
+                {{ $path := .path }}
+                <div>
+                  <a href="#posts-list-{{ .name | urlize }}" class="category-anchor" data-category="{{ .name }}" data-parent-categories="">{{ .name }}</a>
+                  {{ range seq ($.Scratch.Get "max-level") }}
+                    {{ $index := . }}
+                    {{ range $.Scratch.GetSortedMapValues (printf "categories-level-%d" $index) }}
+                      {{ partial "internal/recursive-categories-1.html" (dict "scratch" $.Scratch "category" . "level" $index "parent" $path) }}
+                    {{ end }}
+                  {{ end }}
+                </div>
+              {{ end }}
+            {{ else }}
+              {{ range .Data.Terms.Alphabetical }}
+                <div>
+                  <a href="#posts-list-{{ .Name | urlize }}" data-category="{{ .Name }}">{{ .Name }} ({{ .Pages | len }})</a>
+                </div>
+              {{ end }}
+            {{ end }}
+          </section>
+		  <hr />
+          <section>
+            {{ if $.Site.Params.hierarchicalCategories }}
+              {{ range $.Scratch.GetSortedMapValues "categories-level-0" }}
+                {{ $path := .path }}
+                <div id="posts-list-{{ .name | urlize }}" data-category="{{ .name }}" data-parent-categories="" style="display: block;">
+                  <h4>
+                    <a href="{{ .name | urlize }}">{{ .name }} ({{ $.Scratch.GetSortedMapValues $path | len }})</a>
+                  </h4>
+                  <ul>
+                    {{ range ($.Scratch.GetSortedMapValues $path) }}
+                      <li>
+                        <span style="font-family:mono;">{{ partial "internal/date" . }} | </span><a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                      </li>
+                    {{ end }}
+                    {{ range seq ($.Scratch.Get "max-level") }}
+                      {{ $index := . }}
+                      {{ range $.Scratch.GetSortedMapValues (printf "categories-level-%d" $index) }}
+                        {{ partial "internal/recursive-categories-full-1.html" (dict "scratch" $.Scratch "category" . "level" $index "parent" $path) }}
+                      {{ end }}
+                    {{ end }}
+                  </ul>
+                </div>
+              {{ end }}
+            {{ else }}
+              {{ range .Data.Terms.Alphabetical }}
+              <div id="posts-list-{{ .Name | urlize }}" data-category="{{ .Name }}" style="display: block;">
+                <h4>
+                  <a href="{{ .Name | urlize }}">{{ .Name }} ({{ .Pages | len }})</a>
+                </h4>
+                <ul>
+                  {{ range .Pages.ByDate }}
+                    <li>
+                      <span style="font-family:mono;">{{ partial "internal/date" . }} | </span><a href="{{ .Permalink }}">
+                        {{ .Title }}
+                      </a>
+                    </li>
+                  {{ end }}
+                </ul>
+              </div>
+              {{ end }}
+            {{ end }}
+          </section>
+
+  <footer class="post-footer">
+
+    {{if .Site.Params.logo}}
+    <figure class="author-image">
+        <a class="img" href="{{.Site.BaseURL}}" style="background-image: url({{.Site.Params.logo | relURL}})"><span class="hidden">{{.Site.Params.author}}'s Picture</span></a>
+    </figure>
+    {{end}}
+
+    {{ partial "author.html" . }}
+
+    {{ partial "share.html" . }}
+
+  </footer>
+  </article>
+
+</main>
+
+{{ partial "suggestions.html" . }}
+
+{{ partial "footer.html" . }}
+

@@ -13,58 +13,43 @@
 {{end}}
 
   {{ if .Site.Params.logo }}
-      <a class="blog-logo" href="{{.Site.BaseURL}}"><img src="{{ .Site.Params.logo | relURL}}" alt="Home" /></a>
+    <a class="blog-logo" href="{{.Site.BaseURL}}"><img src="{{ .Site.Params.logo | relURL}}" alt="Home" /></a>
   {{end}}
   {{ if .Site.Menus.main }}
-      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+    <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
   {{else}}
-      <a class="menu-button icon-feed" href="{{ "index.xml"| relURL}}" >&nbsp;&nbsp;Subscribe</a>
+    <a class="menu-button icon-feed" href="{{ "index.xml"| relURL}}" >&nbsp;&nbsp;Subscribe</a>
   {{end}}
   </nav>
 </header>
 
-
-
 <main class="content" role="main">
-
-
-
-
-  <article class="post {{ .Section }}">
-
-    <header class="post-header">
-        <h1 class="post-title">{{.Title}}</h1>
-        <small>{{.Description}}</small>
-
-        <section class="post-meta">
-        {{ if eq .Section "post"}}
-          <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
-            {{ .Date.Format "Jan 2, 2006" }}
-          </time>
-        {{end}}
-         {{ range .Params.tags }}
-          <span class="post-tag small"><a href="{{$.Site.BaseURL}}/tags/{{ . | urlize }}/">#{{ . }}</a></span>
-         {{ end }}
-        </section>
-    </header>
-
-    <section class="post-content">
-      {{ .Content }}
+<article class="post {{ .Section }}">
+  <header class="post-header">
+    <h1 class="post-title">{{.Title}}</h1>
+    <small>{{.Description}}</small>
+    <section class="post-meta">
+      {{ if eq .Section "post"}}
+        <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05+08:00" | safeHTML }}">
+          {{ .Date.Format "2006-01-02" }}
+        </time>
+      {{end}}
+      {{ range .Params.tags }}
+        <span class="post-tag small"><a href="{{$.Site.BaseURL}}tags/{{ . | urlize }}/">#{{ . }}</a></span>
+      {{ end }}
     </section>
+  </header>
 
+  <section class="post-content">
+    {{ .Content }}
+  </section>
 
   <footer class="post-footer">
-
-
     {{ partial "author.html" . }}
-
     {{ partial "share.html" . }}
-
     {{ partial "disqus.html" . }}
-
   </footer>
 </article>
-
 </main>
 
 {{if not .Params.hideSuggestions }}
