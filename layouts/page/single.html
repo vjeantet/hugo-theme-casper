@@ -20,10 +20,10 @@
       {{ if .Site.Menus.main }}
           <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
       {{else}}
-        {{ if .Site.Params.RSSLink}}
-          <a class="menu-button icon-feed" href="{{.Site.Params.RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+        {{ if .Site.Params.RelPermalink}}
+	<a class="menu-button icon-feed" href="{{ with .OutputFormats.Get "RSS" }} {{ .RelPermalink }} {{ end }}">&nbsp;&nbsp;Subscribe</a>
         {{else}}
-          <a class="menu-button icon-feed" href="{{ .RSSLink }}">&nbsp;&nbsp;Subscribe</a>
+	<a class="menu-button icon-feed" href="{{ with .OutputFormats.Get "RSS" }} {{ .RelPermalink }} {{ end }}">&nbsp;&nbsp;Subscribe</a>
         {{end}}
       {{end}}
     </nav>
@@ -57,15 +57,15 @@
         {{ $currentNode := . }}
         {{ range .Site.Menus.main }}
         {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
-        <li><a href="{{.URL}}">{{.Name}}</a></li>
+        <li><a href="{{.Permalink}}">{{.Name}}</a></li>
               {{ range .Children }}
               {{ if .HasChildren }}
               {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
-                <li><a href="{{.URL}}">{{.Name}}</a></li>
+                <li><a href="{{.Permalink}}">{{.Name}}</a></li>
                   {{ range .Children }}
                   {{ if .HasChildren }}
                   {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
-                    <li><a href="{{.URL}}">{{.Name}}</a></li>
+                    <li><a href="{{.Permalink}}">{{.Name}}</a></li>
                   {{end}}
                   {{end}}
                   {{end}}
@@ -106,7 +106,7 @@
     <!-- Children contents -->
 
     {{ range .Menus.main.Children }}
-    <li><a href="{{.URL}}" >{{ .Name }}</a></li>
+    <li><a href="{{.Permalink}}" >{{ .Name }}</a></li>
     {{ end }}
 
   </ul>
@@ -122,15 +122,15 @@
 {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .)}}
       {{ range .Children }}
       <ul>
-      <li><a href="{{.URL}}">{{.Name}}</a>
+      <li><a href="{{.Permalink}}">{{.Name}}</a>
       {{ if .HasChildren }}
         <ul>
         {{ range .Children }}
-          <li><a href="{{.URL}}">{{.Name}}</a>
+          <li><a href="{{.Permalink}}">{{.Name}}</a>
           {{ if .HasChildren }}
             <ul>
             {{ range .Children }}
-            <li><a href="{{.URL}}">{{ .Name }}</a></li>
+            <li><a href="{{.Permalink}}">{{ .Name }}</a></li>
             {{ end }}
             </ul>
           {{ end }}
