@@ -14,7 +14,7 @@
         {{ end }}
     {{ end }}
 
-    {{ $list := where .Data.Pages "Section" "in" ($.Scratch.Get "paginatedSections") }}
+    {{ $list := where .Site.RegularPages "Section" "in" ($.Scratch.Get "paginatedSections") }}
     {{ $list := where $list "Section" "!=" "" }}
     {{ $paginator := .Paginate ( $list ) }}
 
