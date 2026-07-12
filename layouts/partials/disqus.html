@@ -1,5 +1,5 @@
 {{ if ne .Params.comments false}}
-{{ if .Site.DisqusShortname }}
+{{ if .Site.Config.Services.Disqus.Shortname }}
 <div id="disqus_thread"></div>
 <script>
 
@@ -14,7 +14,7 @@ this.page.identifier = "{{ .Permalink }}"; // Replace PAGE_IDENTIFIER with your 
 
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
-s.src = 'https://{{ .Site.DisqusShortname }}.disqus.com/embed.js';
+s.src = 'https://{{ .Site.Config.Services.Disqus.Shortname }}.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();

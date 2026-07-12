@@ -1,9 +1,7 @@
-    {{ range .Data.Pages }}
-        {{if eq .Type "index" }}
+    {{ range where .Site.RegularPages "Type" "index" }}
         <div class="index-content post">
         {{.Content}}
         </div>
-        {{end}}
     {{ end }}
 
     {{ if not ($.Scratch.Get "paginatedSections") }}
@@ -14,7 +12,7 @@
         {{ end }}
     {{ end }}
 
-    {{ $list := where .Data.Pages "Section" "in" ($.Scratch.Get "paginatedSections") }}
+    {{ $list := where .Site.RegularPages "Section" "in" ($.Scratch.Get "paginatedSections") }}
     {{ $list := where $list "Section" "!=" "" }}
     {{ $paginator := .Paginate ( $list ) }}
 

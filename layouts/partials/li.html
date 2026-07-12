@@ -6,7 +6,7 @@
         {{if .Params.excerpt }}
             <p>{{ .Params.excerpt }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
         {{else}}
-            <p>{{ .Summary }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
+            <p>{{ .Summary | plainify }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
         {{end}}
     </section>
     <footer class="post-meta">
